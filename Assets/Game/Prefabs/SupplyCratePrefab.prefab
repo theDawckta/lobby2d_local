@@ -10,6 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6487547261028594717}
   - component: {fileID: 3906027062197522169}
+  - component: {fileID: 5403182072965820100}
+  - component: {fileID: 8083140898419614128}
+  - component: {fileID: 792281131523171368}
   m_Layer: 0
   m_Name: SupplyCratePrefab
   m_TagString: Untagged
@@ -59,3 +62,54 @@ MonoBehaviour:
   OnHold:
     m_PersistentCalls:
       m_Calls: []
+--- !u!65 &5403182072965820100
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 258419747242430829}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.2, y: 1.2, z: 1.2}
+  m_Center: {x: 0, y: 0.6, z: 0}
+--- !u!114 &8083140898419614128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 258419747242430829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2a191da54754c89be28e84f15406660, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: com.onetimegames.coresystems.world::OneTimeGames.CoreSystems.PersistentWorld.NetworkedEntity
+  entityId: supply-crate
+  connection: {fileID: 0}
+  OnToggleChanged:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &792281131523171368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 258419747242430829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6c1f0d4e6fb4f158db85f7d7ef76a5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Game::Game.Environment.SupplyCrateInteractable
+  triggerTag: Player

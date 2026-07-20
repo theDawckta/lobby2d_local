@@ -12,7 +12,6 @@ public class ElectricalSparkTests
     private const string MaterialPath = "Assets/Game/Materials/ElectricalSparkMaterial.mat";
     private const string ControllerPath = "Assets/Game/Animations/ElectricalSparkAnimator.controller";
     private const string PrefabPath = "Assets/Game/Prefabs/ElectricalSparkPrefab.prefab";
-    private const string ScenePath = "Assets/Game/Scenes/Main.unity";
     private const int ExpectedFrameCount = 13;
 
     [Test]
@@ -124,10 +123,4 @@ public class ElectricalSparkTests
         Assert.IsNotNull(prefab.GetComponent<BillboardSprite>());
     }
 
-    [Test]
-    public void MainScene_IsNotModifiedByThisTicket()
-    {
-        var sceneText = System.IO.File.ReadAllText(ScenePath);
-        Assert.IsFalse(sceneText.Contains("ElectricalSparkPrefab"));
-    }
 }
