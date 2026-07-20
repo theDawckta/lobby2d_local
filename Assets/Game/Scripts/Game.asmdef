@@ -4,7 +4,8 @@
     "references": [
         "com.onetimegames.coresystems",
         "com.onetimegames.coresystems.world",
-        "com.onetimegames.coresystems.presence"
+        "com.onetimegames.coresystems.presence",
+        "Unity.InputSystem"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

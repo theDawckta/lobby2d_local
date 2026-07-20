@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4206731810629214844}
   - component: {fileID: 2475256242890229081}
+  - component: {fileID: 7603216772029205966}
   m_Layer: 0
   m_Name: Bird
   m_TagString: Untagged
@@ -54,3 +55,22 @@ MonoBehaviour:
   OnLoaded:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &7603216772029205966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2928996770122044687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d56101d72bb8717489913c0cdb031791, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Game::Game.Wildlife.WildlifeAgent
+  wanderSpeed: 1
+  fleeSpeed: 4
+  fleeDistance: 0
+  arrivalDistance: 0.3
+  fleeTargetDistance: 8
+  wanderIntervalSeconds: 4
+  fleeSfxName: BirdChirp

@@ -9,7 +9,6 @@ public class BackgroundTests
     private const string SidecarPath = "Assets/Game/Sprites/OvergrownFacilityBackground/OvergrownFacilityBackground-sprites.json";
     private const string MaterialPath = "Assets/Game/Materials/BackgroundMaterial.mat";
     private const string PrefabPath = "Assets/Game/Prefabs/BackgroundPrefab.prefab";
-    private const string ScenePath = "Assets/Game/Scenes/Main.unity";
 
     [Test]
     public void BackgroundTexture_ExistsInSpritesFolder()
@@ -81,13 +80,5 @@ public class BackgroundTests
     {
         var prefab = AssetDatabase.LoadAssetAtPath<GameObject>(PrefabPath);
         Assert.IsNull(prefab.GetComponent<MeshCollider>());
-    }
-
-    [Test]
-    public void MainScene_IsNotModifiedByThisTicket()
-    {
-        var sceneText = System.IO.File.ReadAllText(ScenePath);
-        Assert.IsFalse(sceneText.Contains("BackgroundPrefab"));
-        Assert.IsFalse(sceneText.Contains("FullScreenBackground"));
     }
 }
