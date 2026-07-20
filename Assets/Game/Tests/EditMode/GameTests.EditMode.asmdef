@@ -1,7 +1,8 @@
 {
     "name": "GameTests.EditMode",
     "references": [
-        "Game"
+        "Game",
+        "com.onetimegames.coresystems"
     ],
     "includePlatforms": [
         "Editor"
