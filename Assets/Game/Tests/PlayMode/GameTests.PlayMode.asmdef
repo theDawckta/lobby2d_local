@@ -3,7 +3,8 @@
     "references": [
         "Game",
         "com.onetimegames.coresystems",
-        "com.onetimegames.coresystems.world"
+        "com.onetimegames.coresystems.world",
+        "com.onetimegames.coresystems.presence"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
