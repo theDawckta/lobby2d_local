@@ -1,0 +1,19 @@
+{
+  "frameWidth": 2048,
+  "frameHeight": 2048,
+  "columns": 1,
+  "rows": 1,
+  "states": {
+    "idle": 1
+  },
+  "assetKind": "ground-overlay",
+  "transparent": true,
+  "coverage": "medium",
+  "edgeMode": null,
+  "sliceBorder": null,
+  "styleRefs": [],
+  "description": "Scattered clusters of organic moss patches and branching crack networks on a fully transparent background, for overlay onto a weathered metallic circuitry floor tile. 8-14 irregular moss blobs of varying size (small speckled 50-150px, medium 200-400px, 1-2 large 500-700px) in desaturated greens, scattered asymmetrically with denser clusters near corners and seams. 4-8 branching crack clusters ranging from short hairline fractures to long 800-1200px branching cracks, with dark near-black interiors and a faint lighter highlight edge on one side suggesting broken metal catching light. Some cracks intersect moss patches to suggest moss growing out of damage. Majority of canvas remains empty/transparent, edges fade to sparse detail to avoid a hard rectangular seam.",
+  "style": "painterly stylized decay, muted desaturated palette, moss green #4A5D3A, olive #5C6B3F, dark shadow green #33421F, crack colors near-black #1A1A1A to dark brown-grey #2B2723 with highlight edge #6B655C, soft feathered organic edges on moss, sharp thin branching crack lines, naturalistic irregular random distribution, sci-fi abandoned facility reclaimed by nature aesthetic, non-cartoonish, weathered brutalist-decay mood",
+  "provider": "comfyui",
+  "specPath": "Design/lobby2d_local/Assets/Game/Design/FloorDetailOverlayMossAndCracks/spec.md"
+}
