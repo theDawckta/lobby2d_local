@@ -2,7 +2,8 @@
     "name": "GameTests.PlayMode",
     "references": [
         "Game",
-        "com.onetimegames.coresystems"
+        "com.onetimegames.coresystems",
+        "com.onetimegames.coresystems.world"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
