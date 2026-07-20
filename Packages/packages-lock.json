@@ -1,12 +1,5 @@
 {
   "dependencies": {
-    "com.endel.nativewebsocket": {
-      "version": "https://github.com/endel/NativeWebSocket.git#upm",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {},
-      "hash": "ea014c9ae534d56111962d96f89f8a046e302dc9"
-    },
     "com.gamelovers.mcp-unity": {
       "version": "https://github.com/CoderGamester/mcp-unity.git",
       "depth": 0,
@@ -203,6 +196,13 @@
         "com.unity.modules.physics2d": "1.0.0",
         "com.unity.modules.physics": "1.0.0"
       }
+    },
+    "io.colyseus.sdk": {
+      "version": "https://github.com/colyseus/colyseus-unity3d.git?path=/Assets/Colyseus#0.16.5",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "7148fc07ed665b52ff64e7e857936e4ef43d3361"
     },
     "com.unity.modules.animation": {
       "version": "1.0.0",

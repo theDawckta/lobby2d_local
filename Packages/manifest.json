@@ -1,9 +1,9 @@
 {
   "dependencies": {
-    "com.endel.nativewebsocket": "https://github.com/endel/NativeWebSocket.git#upm",
     "com.gamelovers.mcp-unity": "https://github.com/CoderGamester/mcp-unity.git",
     "com.onetimegames.coreassets": "https://github.com/theDawckta/ai-game-factory.git?path=/CoreAssets",
     "com.onetimegames.coresystems": "https://github.com/theDawckta/ai-game-factory.git?path=/CoreSystems",
+    "io.colyseus.sdk": "https://github.com/colyseus/colyseus-unity3d.git?path=/Assets/Colyseus#0.16.5",
     "com.unity.inputsystem": "1.19.0",
     "com.unity.textmeshpro": "4.0.0",
     "com.unity.render-pipelines.universal": "17.5.0",

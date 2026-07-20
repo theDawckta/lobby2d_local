@@ -1,0 +1,7 @@
+{
+  "world": {
+    "lifetime": "persistent",
+    "worldId": "lobby2d-local",
+    "definition": "world.json"
+  }
+}
