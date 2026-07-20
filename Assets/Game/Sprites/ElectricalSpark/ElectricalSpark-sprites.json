@@ -1,0 +1,26 @@
+{
+  "frameWidth": 128,
+  "frameHeight": 128,
+  "columns": 4,
+  "rows": 4,
+  "states": {
+    "idle": 12
+  },
+  "assetKind": "animated-prop",
+  "transparent": true,
+  "coverage": null,
+  "edgeMode": null,
+  "sliceBorder": null,
+  "styleRefs": [],
+  "description": "A sudden burst of high-voltage electrical sparks arcing from a central point. The effect consists of jagged, branching lines of electricity with a bright white core and electric blue to cyan outer glow. The animation depicts a rapid cycle: starting empty, a small white core appears, branches out into sharp jagged lines, reaches maximum intensity with multiple offshoots, then rapidly shrinks and fades back to empty. The look is dangerous, unstable, and high-tech, resembling static discharge or broken power lines. No fire or magic elements. Soft glowing edges for alpha blending.",
+  "style": "High-tech derelict aesthetic, digital VFX style, electric blue (#00FFFF) and cyan (#0088FF) palette with white (#FFFFFF) cores, sharp jagged details, glowing edges, transparent background",
+  "provider": "comfyui",
+  "specPath": "Design/lobby2d_local/Assets/Game/Design/SparkEffectFlickeringSparks/spec.md",
+  "frameCount": 13,
+  "fps": 12,
+  "wrapMode": "loop",
+  "motion": "organic",
+  "cellSize": 128,
+  "gridCols": 4,
+  "gridRows": 4
+}

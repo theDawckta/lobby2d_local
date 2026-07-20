@@ -1,7 +1,9 @@
 {
     "name": "Game",
     "rootNamespace": "",
-    "references": [],
+    "references": [
+        "com.onetimegames.coresystems"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
