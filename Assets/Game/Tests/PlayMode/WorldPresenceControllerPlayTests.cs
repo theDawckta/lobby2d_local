@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.TestTools;
 using UnityEngine.UI;
 using Game.World;
+using Game.Audio;
 using OneTimeGames.CoreSystems;
 using OneTimeGames.CoreSystems.Presence;
 
@@ -134,6 +135,44 @@ public class WorldPresenceControllerPlayTests
         // is all that's verifiable without a live server (the send-throttling/network behavior itself
         // is already covered by CoreSystems' own WorldPresence tests).
         Assert.IsNotNull(controller.Presence);
+    }
+
+    [UnityTest]
+    public IEnumerator Update_PlaysFootstepSfx_WhilePlayerIsMoving()
+    {
+        var go = Spawn("WorldPresenceController");
+        var controller = go.AddComponent<WorldPresenceController>();
+        yield return null; // first frame only establishes the last-known position
+
+        string played = null;
+        void Handler(string name) => played = name;
+        AudioManager.Instance.OnSfxPlayed += Handler;
+
+        for (var i = 0; i < 5; i++)
+        {
+            go.transform.position += new Vector3(0.1f, 0f, 0f);
+            yield return null;
+        }
+
+        AudioManager.Instance.OnSfxPlayed -= Handler;
+        Assert.AreEqual("FootstepMetal", played);
+    }
+
+    [UnityTest]
+    public IEnumerator Update_DoesNotPlayFootstepSfx_WhilePlayerIsStationary()
+    {
+        var go = Spawn("WorldPresenceController");
+        go.AddComponent<WorldPresenceController>();
+        yield return null;
+
+        var fired = false;
+        void Handler(string name) => fired = true;
+        AudioManager.Instance.OnSfxPlayed += Handler;
+
+        for (var i = 0; i < 5; i++) yield return null;
+
+        AudioManager.Instance.OnSfxPlayed -= Handler;
+        Assert.IsFalse(fired);
     }
 
     [UnityTest]

@@ -5,6 +5,7 @@ using UnityEngine.TestTools;
 using UnityEngine.UIElements;
 using Game.Emotes;
 using Game.World;
+using Game.Audio;
 using OneTimeGames.CoreSystems;
 
 namespace Game.Tests.PlayMode
@@ -111,6 +112,28 @@ namespace Game.Tests.PlayMode
             _emoteSystem.PlayEmote();
 
             Assert.AreEqual("wave", sentEmote);
+
+            Object.Destroy(presenceGo);
+        }
+
+        [UnityTest]
+        public IEnumerator PlayEmote_PlaysUiSfx_WhenEmoteSent()
+        {
+            var presenceGo = new GameObject("WorldPresenceController");
+            var presenceController = presenceGo.AddComponent<WorldPresenceController>();
+            _emoteSystem.PresenceController = presenceController;
+            yield return null;
+
+            _emoteSystem.ApplyEmoteListResponse("[{\"name\":\"wave\",\"ready\":true}]");
+
+            string played = null;
+            void Handler(string name) => played = name;
+            AudioManager.Instance.OnSfxPlayed += Handler;
+
+            _emoteSystem.PlayEmote();
+
+            AudioManager.Instance.OnSfxPlayed -= Handler;
+            Assert.AreEqual("EmotePlay", played);
 
             Object.Destroy(presenceGo);
         }
