@@ -4,6 +4,7 @@ using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
 using Game.Wildlife;
+using Game.Audio;
 using OneTimeGames.CoreSystems;
 
 public class WildlifeAgentPlayTests
@@ -130,6 +131,47 @@ public class WildlifeAgentPlayTests
         for (var i = 0; i < 5; i++) yield return null;
 
         Assert.Pass(); // reaching here with no exception proves SetSpeed() on an unloaded animator is safe
+    }
+
+    [UnityTest]
+    public IEnumerator Agent_PlaysFleeSfx_WhenEnteringFleeingState()
+    {
+        var go = Spawn("Deer", Vector3.zero);
+        var agent = go.AddComponent<WildlifeAgent>();
+        agent.FleeSfxName = "DeerGrunt";
+        var playerGo = Spawn("Player", new Vector3(1f, 0f, 0f));
+        var players = new List<Transform> { playerGo.transform };
+
+        string played = null;
+        void Handler(string name) => played = name;
+        AudioManager.Instance.OnSfxPlayed += Handler;
+
+        agent.Initialize(Vector3.zero, new Vector3(30f, 0f, 30f), players);
+        yield return null;
+
+        AudioManager.Instance.OnSfxPlayed -= Handler;
+        Assert.AreEqual(WildlifeState.Fleeing, agent.CurrentState);
+        Assert.AreEqual("DeerGrunt", played);
+    }
+
+    [UnityTest]
+    public IEnumerator Agent_DoesNotPlaySfx_WhenFleeSfxNameIsEmpty()
+    {
+        var go = Spawn("Deer", Vector3.zero);
+        var agent = go.AddComponent<WildlifeAgent>();
+        var playerGo = Spawn("Player", new Vector3(1f, 0f, 0f));
+        var players = new List<Transform> { playerGo.transform };
+
+        var fired = false;
+        void Handler(string name) => fired = true;
+        AudioManager.Instance.OnSfxPlayed += Handler;
+
+        agent.Initialize(Vector3.zero, new Vector3(30f, 0f, 30f), players);
+        yield return null;
+
+        AudioManager.Instance.OnSfxPlayed -= Handler;
+        Assert.AreEqual(WildlifeState.Fleeing, agent.CurrentState);
+        Assert.IsFalse(fired);
     }
 
     [UnityTest]

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.TestTools;
 using UnityEngine.UIElements;
 using Game.UI;
+using Game.Audio;
 
 namespace Game.Tests.PlayMode
 {
@@ -89,6 +90,44 @@ namespace Game.Tests.PlayMode
             Assert.IsFalse(_screen.IsMuted);
             Assert.AreEqual(1f, AudioListener.volume);
             Assert.AreEqual("Mute", _screen.MuteButton.text);
+        }
+
+        [UnityTest]
+        public IEnumerator ToggleMute_MutesMusic_ViaAudioManager()
+        {
+            yield return null;
+            AudioManager.Instance.SetMusicMuted(false);
+
+            _screen.ToggleMute();
+
+            Assert.IsTrue(AudioManager.Instance.IsMusicMuted);
+        }
+
+        [UnityTest]
+        public IEnumerator ToggleMute_Twice_UnmutesMusic_ViaAudioManager()
+        {
+            yield return null;
+            AudioManager.Instance.SetMusicMuted(false);
+
+            _screen.ToggleMute();
+            _screen.ToggleMute();
+
+            Assert.IsFalse(AudioManager.Instance.IsMusicMuted);
+        }
+
+        [UnityTest]
+        public IEnumerator ToggleMute_PlaysUiSfx()
+        {
+            yield return null;
+
+            string played = null;
+            void Handler(string name) => played = name;
+            AudioManager.Instance.OnSfxPlayed += Handler;
+
+            _screen.ToggleMute();
+
+            AudioManager.Instance.OnSfxPlayed -= Handler;
+            Assert.AreEqual("MuteToggleOn", played);
         }
     }
 }

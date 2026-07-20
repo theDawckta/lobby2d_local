@@ -5,6 +5,7 @@ using UnityEngine.Networking;
 using UnityEngine.UIElements;
 using OneTimeGames.CoreSystems;
 using Game.World;
+using Game.Audio;
 
 namespace Game.Emotes
 {
@@ -177,6 +178,7 @@ namespace Game.Emotes
         {
             if (!HasRecordedEmotes || presenceController == null) return;
             presenceController.SendEmote(SelectedEmoteName);
+            AudioManager.Instance?.PlaySFX("EmotePlay");
         }
 
         [Serializable]

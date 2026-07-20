@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine;
 using OneTimeGames.CoreSystems;
 using OneTimeGames.CoreSystems.Presence;
+using Game.Audio;
 
 namespace Game.World
 {
@@ -22,6 +23,16 @@ namespace Game.World
 
         [Tooltip("Optional: shows the local player's own chat bubble when their message echoes back.")]
         [SerializeField] private ChatBubble localChatBubble;
+
+        [Tooltip("Seconds between footstep SFX while the local player is moving.")]
+        [SerializeField] private float footstepIntervalSeconds = 0.4f;
+
+        [Tooltip("Minimum distance moved in a frame to count as walking, for footstep SFX.")]
+        [SerializeField] private float footstepMoveThreshold = 0.01f;
+
+        private Vector3 _lastPosition;
+        private bool _hasLastPosition;
+        private float _footstepTimer;
 
         public WorldPresence Presence { get; private set; }
 
@@ -74,6 +85,36 @@ namespace Game.World
         private void Update()
         {
             Presence.UpdateLocalTransform(transform.position, transform.eulerAngles.y);
+            UpdateFootstepAudio();
+        }
+
+        // Plays a footstep SFX at a fixed cadence while the local player is actually moving --
+        // driven by this GameObject's own transform delta since there is no dedicated player
+        // movement controller yet to hook into (this Update() already runs every frame for
+        // position sync, so it is the only reliable "is the local player moving" signal today).
+        private void UpdateFootstepAudio()
+        {
+            if (!_hasLastPosition)
+            {
+                _lastPosition = transform.position;
+                _hasLastPosition = true;
+                return;
+            }
+
+            var moved = Vector3.Distance(transform.position, _lastPosition) > footstepMoveThreshold;
+            _lastPosition = transform.position;
+
+            if (!moved)
+            {
+                _footstepTimer = 0f;
+                return;
+            }
+
+            _footstepTimer -= Time.deltaTime;
+            if (_footstepTimer > 0f) return;
+
+            AudioManager.Instance?.PlaySFX("FootstepMetal");
+            _footstepTimer = footstepIntervalSeconds;
         }
 
         public void SendChat(string text) => Presence.SendChat(text);

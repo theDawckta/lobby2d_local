@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.UIElements;
 using OneTimeGames.CoreSystems;
+using Game.Audio;
 
 namespace Game.UI
 {
@@ -69,6 +70,8 @@ namespace Game.UI
             IsMuted = !IsMuted;
             AudioListener.volume = IsMuted ? 0f : 1f;
             if (MuteButton != null) MuteButton.text = IsMuted ? "Unmute" : "Mute";
+            AudioManager.Instance?.SetMusicMuted(IsMuted);
+            AudioManager.Instance?.PlaySFX(IsMuted ? "MuteToggleOn" : "MuteToggleOff");
             OnMuteToggled?.Invoke(IsMuted);
         }
     }

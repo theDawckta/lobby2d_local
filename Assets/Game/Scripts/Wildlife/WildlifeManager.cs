@@ -9,6 +9,11 @@ namespace Game.Wildlife
     {
         public GameObject prefab;
         public int count = 1;
+
+        // Explicit SFX name to play when a wildlife instance spawned from this entry starts
+        // fleeing (e.g. "DeerGrunt", "RabbitHop") -- stored as data here rather than derived from
+        // the prefab's name, per CLAUDE.md's naming-convention rule. Empty means no flee SFX.
+        public string fleeSfxName = "";
     }
 
     // Spawns and manages wildlife (deer, rabbits, birds, etc.) within a bounded area of the
@@ -51,7 +56,8 @@ namespace Game.Wildlife
                 if (entry?.prefab == null) continue;
                 for (var i = 0; i < entry.count; i++)
                 {
-                    SpawnOne(entry.prefab);
+                    var agent = SpawnOne(entry.prefab);
+                    if (agent != null) agent.FleeSfxName = entry.fleeSfxName;
                 }
             }
         }

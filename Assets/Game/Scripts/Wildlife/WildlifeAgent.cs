@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using OneTimeGames.CoreSystems;
+using Game.Audio;
 
 namespace Game.Wildlife
 {
@@ -24,6 +25,11 @@ namespace Game.Wildlife
         [SerializeField] private float fleeTargetDistance = 8f;
         [SerializeField] private float wanderIntervalSeconds = 4f;
 
+        // Explicit, per-agent SFX name (never derived from the prefab/GameObject's name -- see
+        // CLAUDE.md's naming-convention rule) to play once when this agent starts fleeing. Left
+        // empty by default; WildlifeManager assigns it per spawn entry from its own configured data.
+        [SerializeField] private string fleeSfxName = "";
+
         private Vector3 _areaCenter;
         private Vector3 _areaSize;
         private Vector3 _target;
@@ -34,6 +40,12 @@ namespace Game.Wildlife
 
         public WildlifeState CurrentState { get; private set; } = WildlifeState.Wandering;
         public Vector3 CurrentTarget => _target;
+
+        public string FleeSfxName
+        {
+            get => fleeSfxName;
+            set => fleeSfxName = value;
+        }
 
         public void Initialize(Vector3 areaCenter, Vector3 areaSize, IReadOnlyList<Transform> players)
         {
@@ -58,6 +70,7 @@ namespace Game.Wildlife
                 {
                     CurrentState = WildlifeState.Fleeing;
                     _target = WildlifeMovement.ComputeFleeTarget(transform.position, nearestPlayer.position, fleeTargetDistance);
+                    if (!string.IsNullOrEmpty(fleeSfxName)) AudioManager.Instance?.PlaySFX(fleeSfxName);
                 }
                 MoveToward(_target, fleeSpeed);
                 return;
