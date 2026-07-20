@@ -1,0 +1,19 @@
+{
+  "frameWidth": 512,
+  "frameHeight": 512,
+  "columns": 1,
+  "rows": 1,
+  "states": {
+    "idle": 1
+  },
+  "assetKind": "tileable-texture",
+  "transparent": false,
+  "coverage": null,
+  "edgeMode": null,
+  "sliceBorder": null,
+  "styleRefs": [],
+  "description": "Seamless tileable wall texture of buckled and warped corrugated metal paneling from an abandoned industrial facility. Visible panel seams and rivets, dented and stress-warped surface. Rust streaking in orange-brown and dark umber, oxidation blotches, scratched and flaking faded olive-drab and dull gray paint. Irregular organic vines with leaves creeping across roughly 30-40% of the surface in muted moss green, olive, and dark green tones, with some dried brown vine sections, leaving 60-70% of the metal clearly visible. No props, pipework, signage, or characters. Flat neutral lighting, no baked directional shadows.",
+  "style": "photoreal-leaning painted texture, derelict industrial facility aesthetic, desaturated cool grays and browns with rust accents and muted organic greens, mid-to-dark moody value range, no bright saturated colors, seamless tiling on all edges, no repeating obvious motif",
+  "provider": "comfyui",
+  "specPath": "Design/lobby2d_local/Assets/Game/Design/WallTextureBuckledMetalWithVines/spec.md"
+}
