@@ -1,0 +1,19 @@
+{
+  "frameWidth": 1024,
+  "frameHeight": 576,
+  "columns": 1,
+  "rows": 1,
+  "states": {
+    "idle": 1
+  },
+  "assetKind": "background",
+  "transparent": false,
+  "coverage": null,
+  "edgeMode": null,
+  "sliceBorder": null,
+  "styleRefs": [],
+  "description": "Wide-angle view of interior of a collapsed high-tech sci-fi facility. Distant perspective. Broken concrete slabs, twisted metal girders, exposed wiring in midground. Patches of moss and small vines creeping over rusted metal. Distant silhouettes of larger structures with faint glowing lights or sparks. Sky/ceiling obscured by dust, smoke, and haze. Soft diffuse ambient lighting with subtle volumetric rays. No harsh sunlight. Melancholic, quiet, decaying atmosphere.",
+  "style": "Derelict sci-fi, post-apocalyptic high-tech, BioShock underwater ruins aesthetic, muted teals, desaturated cool greys, dark slate blues, muted greens, volumetric fog, cinematic lighting, 16:9 aspect ratio, detailed digital painting",
+  "provider": "comfyui",
+  "specPath": "Design/lobby2d_local/Assets/Game/Design/BackgroundDistantRuins/spec.md"
+}
