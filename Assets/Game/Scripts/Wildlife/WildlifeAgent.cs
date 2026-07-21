@@ -30,6 +30,11 @@ namespace Game.Wildlife
         // empty by default; WildlifeManager assigns it per spawn entry from its own configured data.
         [SerializeField] private string fleeSfxName = "";
 
+        [Tooltip("Volume the flee sound plays at (0-1). Kept low so the noise animals make when the " +
+                 "player approaches is subtle, not startling.")]
+        [Range(0f, 1f)]
+        [SerializeField] private float fleeSfxVolume = 0.2f;
+
         [Tooltip("If > 0, this creature FLIES: it is lifted to this world Y and wanders at that height " +
                  "instead of on the floor (e.g. a bird). Movement stays horizontal, so it holds the height.")]
         [SerializeField] private float flyHeight = 0f;
@@ -88,7 +93,7 @@ namespace Game.Wildlife
                 {
                     CurrentState = WildlifeState.Fleeing;
                     _target = WildlifeMovement.ComputeFleeTarget(transform.position, nearestPlayer.position, fleeTargetDistance);
-                    if (!string.IsNullOrEmpty(fleeSfxName)) AudioManager.Instance?.PlaySFX(fleeSfxName);
+                    if (!string.IsNullOrEmpty(fleeSfxName)) AudioManager.Instance?.PlaySFX(fleeSfxName, fleeSfxVolume);
                 }
                 MoveToward(_target, fleeSpeed);
                 return;

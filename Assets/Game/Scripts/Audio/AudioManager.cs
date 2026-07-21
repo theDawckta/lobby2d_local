@@ -94,7 +94,7 @@ namespace Game.Audio
 
         // Loads (if needed) and fires-and-forgets the named clip from Resources/Audio/SFX via
         // PlayOneShot, so overlapping SFX never cut each other off. Missing clips warn and no-op.
-        public void PlaySFX(string clipName)
+        public void PlaySFX(string clipName, float volumeScale = 1f)
         {
             var clip = LoadClip(clipName, SfxResourcePrefix);
             if (clip == null)
@@ -103,7 +103,7 @@ namespace Game.Audio
                 return;
             }
 
-            _sfxSource.PlayOneShot(clip);
+            _sfxSource.PlayOneShot(clip, Mathf.Clamp01(volumeScale));
             OnSfxPlayed?.Invoke(clipName);
         }
 
