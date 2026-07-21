@@ -44,6 +44,12 @@ namespace Game.World
                  "it does NOT connect the Editor to the live world server.")]
         [SerializeField] private string editorCharactersBaseUrl = "https://factory.tehfaktoree.com";
 
+        [Tooltip("Animation played while a player is moving. 'walking' suits a calm lobby better than 'run'.")]
+        [SerializeField] private string moveAnimation = "walking";
+
+        [Tooltip("Animation played while a player stands still.")]
+        [SerializeField] private string idleAnimation = "idle";
+
         private Vector3 _lastPosition;
         private bool _hasLastPosition;
         private float _footstepTimer;
@@ -105,7 +111,12 @@ namespace Game.World
             if (Application.isEditor && string.IsNullOrEmpty(Presence.charactersBaseUrl))
                 Presence.charactersBaseUrl = editorCharactersBaseUrl;
 
-            // Now that the sprite host is resolved, arm the fallback avatar. WorldPresence.Update()
+            // Choose the walk/idle animations before arming the avatar spawn below (WorldPresence reads
+            // these when it loads the sprite sets). A calm lobby walks rather than runs.
+            Presence.remoteAnimation = moveAnimation;
+            Presence.idleAnimation = idleAnimation;
+
+            // Now that the sprite host + animations are resolved, arm the fallback avatar. WorldPresence.Update()
             // spawns it immediately (dummy), then upgrades to the real character on the server roster.
             Presence.localFallbackCharacterName = fallbackCharacterName;
 
