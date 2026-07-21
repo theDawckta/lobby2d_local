@@ -12,7 +12,11 @@
 /[Bb]uild/
 /[Bb]uilds/
 /[Ll]ogs/
-/[Uu]ser[Ss]ettings/
+/[Uu]ser[Ss]ettings/*
+# Commit the Unity-MCP (Game Developer) connection config so the plugin defaults to
+# Custom (local server), not Cloud -- a fresh clone otherwise spams "Authorization failed"
+# trying to reach IvanMurzak's cloud hub. The token field is blanked/regenerated per machine.
+!/[Uu]ser[Ss]ettings/AI-Game-Developer-Config.json
 *.log
 
 # By default unity supports Blender asset imports, *.blend1 blender files do not need to be commited to version control.
