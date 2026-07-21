@@ -2,7 +2,8 @@
     "name": "GameTests.EditMode",
     "references": [
         "Game",
-        "com.onetimegames.coresystems"
+        "com.onetimegames.coresystems",
+        "com.onetimegames.coresystems.glb"
     ],
     "includePlatforms": [
         "Editor"
