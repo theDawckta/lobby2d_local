@@ -34,6 +34,13 @@ namespace Game.Wildlife
                  "instead of on the floor (e.g. a bird). Movement stays horizontal, so it holds the height.")]
         [SerializeField] private float flyHeight = 0f;
 
+        [Tooltip("How fast the creature can turn (degrees/sec). It steers its heading toward its target " +
+                 "at this rate and moves ALONG that heading, so it follows a curved path instead of " +
+                 "snapping to face a new direction instantly. Applies to both 2D and 3D creatures.")]
+        [SerializeField] private float turnSpeedDegreesPerSecond = 140f;
+
+        private Vector3 _heading = Vector3.forward;   // current travel direction, steered gradually
+
         private Vector3 _areaCenter;
         private Vector3 _areaSize;
         private Vector3 _target;
@@ -99,15 +106,21 @@ namespace Game.Wildlife
 
         private void MoveToward(Vector3 target, float speed)
         {
-            var direction = target - transform.position;
-            direction.y = 0f;
-            var distance = direction.magnitude;
+            var desired = target - transform.position;
+            desired.y = 0f;
 
-            if (distance > 0.0001f)
+            if (desired.sqrMagnitude > 0.0001f)
             {
-                var moveDistance = Mathf.Min(speed * Time.deltaTime, distance);
-                transform.position += direction.normalized * moveDistance;
-                transform.rotation = Quaternion.LookRotation(direction.normalized, Vector3.up);
+                // Steer the current heading TOWARD the target at a limited turn rate, then move ALONG
+                // that heading -- so the creature banks through a curve instead of snapping to face the
+                // new target instantly. The gradually-changing heading is what makes both the 3D model
+                // rotation and the 2D sprite direction (derived from velocity) change smoothly.
+                var desiredDir = desired.normalized;
+                if (_heading.sqrMagnitude < 0.0001f) _heading = desiredDir;
+                _heading = Vector3.RotateTowards(_heading, desiredDir,
+                    Mathf.Deg2Rad * turnSpeedDegreesPerSecond * Time.deltaTime, 0f).normalized;
+                transform.position += _heading * (speed * Time.deltaTime);
+                transform.rotation = Quaternion.LookRotation(_heading, Vector3.up);
             }
 
             transform.position = WildlifeMovement.ClampToArea(transform.position, _areaCenter, _areaSize);

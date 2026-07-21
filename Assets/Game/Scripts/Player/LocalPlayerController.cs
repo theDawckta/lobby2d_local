@@ -51,6 +51,14 @@ namespace Game.Player
             if (worldPresence == null) worldPresence = FindFirstObjectByType<WorldPresence>();
         }
 
+        private void Start()
+        {
+            // Register with the wildlife manager so animals (2D + 3D) actually flee from the player.
+            // Nothing else called RegisterPlayer, so the flee list was always empty.
+            var wildlife = FindFirstObjectByType<Game.Wildlife.WildlifeManager>();
+            if (wildlife != null) wildlife.RegisterPlayer(transform);
+        }
+
         private void Update()
         {
             Move(ReadInput(), Time.deltaTime);

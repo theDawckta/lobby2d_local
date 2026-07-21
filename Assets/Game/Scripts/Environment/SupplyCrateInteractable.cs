@@ -47,7 +47,10 @@ namespace Game.Environment
             if (!other.CompareTag(triggerTag)) return;
 
             _hasSentToggle = true;
-            _entity.Toggle();
+            if (_entity.IsConnected)
+                _entity.Toggle();          // online: server-authoritative -- opens when the delta returns
+            else
+                HandleToggleChanged(true);  // offline (Editor / no backend): open optimistically & locally
         }
 
         // Public (not private) so it can be exercised directly in tests without a live
