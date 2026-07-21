@@ -1818,7 +1818,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Game::Game.World.WorldPresenceController
   auth: {fileID: 170212869}
   localChatBubble: {fileID: 2020080237}
-  footstepIntervalSeconds: 0.4
+  footstepIntervalSeconds: 0.8
   footstepMoveThreshold: 0.01
 --- !u!114 &2020080239
 MonoBehaviour:
