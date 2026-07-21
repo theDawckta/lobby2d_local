@@ -69,8 +69,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Game::Game.Wildlife.WildlifeAgent
   wanderSpeed: 1
   fleeSpeed: 4
-  fleeDistance: 0
+  fleeDistance: 5
   arrivalDistance: 0.3
   fleeTargetDistance: 8
   wanderIntervalSeconds: 4
   fleeSfxName: BirdChirp
+  flyHeight: 3

@@ -30,6 +30,10 @@ namespace Game.Wildlife
         // empty by default; WildlifeManager assigns it per spawn entry from its own configured data.
         [SerializeField] private string fleeSfxName = "";
 
+        [Tooltip("If > 0, this creature FLIES: it is lifted to this world Y and wanders at that height " +
+                 "instead of on the floor (e.g. a bird). Movement stays horizontal, so it holds the height.")]
+        [SerializeField] private float flyHeight = 0f;
+
         private Vector3 _areaCenter;
         private Vector3 _areaSize;
         private Vector3 _target;
@@ -53,6 +57,13 @@ namespace Game.Wildlife
             _areaSize = areaSize;
             _players = players;
             _animator = GetComponent<GlbCharacterAnimator>();
+            // Flyers (birds) operate at flyHeight: lift once here. MoveToward zeroes the vertical
+            // component, so the creature holds this Y for the rest of its life.
+            if (flyHeight > 0f)
+            {
+                var pos = transform.position; pos.y = flyHeight; transform.position = pos;
+                _areaCenter.y = flyHeight;
+            }
             _target = WildlifeMovement.PickWanderTarget(_areaCenter, _areaSize);
             _nextWanderTime = Time.time + wanderIntervalSeconds;
             _initialized = true;
