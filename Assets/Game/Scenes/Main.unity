@@ -899,6 +899,9 @@ MonoBehaviour:
   - prefab: {fileID: 2928996770122044687, guid: 28449dd9fe5e782428f3a45de3afee49, type: 3}
     count: 1
     fleeSfxName: BirdChirp
+  - prefab: {fileID: 345492621807922553, guid: 65cdafcff8b2e2b42a4c48856a66a213, type: 3}
+    count: 1
+    fleeSfxName: RabbitHop
   areaCenter: {x: 0, y: 0, z: 0}
   areaSize: {x: 20, y: 0, z: 20}
   spawnOnStart: 1
