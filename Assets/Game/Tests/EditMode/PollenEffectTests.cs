@@ -8,12 +8,30 @@ public class PollenEffectTests
 {
     private const string MaterialPath = "Assets/Game/Materials/PollenMaterial.mat";
     private const string PrefabPath = "Assets/Game/Prefabs/PollenEffectPrefab.prefab";
+    private const string TexturePath = "Assets/Game/Sprites/PollenSpore/PollenSpore.png";
 
     [Test]
     public void PollenMaterial_Exists()
     {
         var material = AssetDatabase.LoadAssetAtPath<Material>(MaterialPath);
         Assert.IsNotNull(material);
+    }
+
+    [Test]
+    public void PollenSporeTexture_IsImported()
+    {
+        var texture = AssetDatabase.LoadAssetAtPath<Texture2D>(TexturePath);
+        Assert.IsNotNull(texture, $"Expected the generated pollen spore texture at {TexturePath}.");
+    }
+
+    [Test]
+    public void PollenMaterial_BaseMapIsSporeTexture()
+    {
+        var material = AssetDatabase.LoadAssetAtPath<Material>(MaterialPath);
+        var texture = AssetDatabase.LoadAssetAtPath<Texture2D>(TexturePath);
+        Assert.IsNotNull(texture, $"Expected the generated pollen spore texture at {TexturePath}.");
+        Assert.AreEqual(texture, material.GetTexture("_BaseMap"),
+            "PollenMaterial's _BaseMap must reference the generated spore texture -- not render as a flat tinted quad.");
     }
 
     [Test]
