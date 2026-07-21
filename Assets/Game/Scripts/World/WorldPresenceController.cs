@@ -35,6 +35,15 @@ namespace Game.World
                  "be scaled up to read as human-sized next to them.")]
         [SerializeField] private float avatarScale = 5f;
 
+        [Tooltip("Character shown for the local player when no real one is resolved yet (Editor with " +
+                 "no backend, or before the server roster arrives). 'dummy' is the universal guest.")]
+        [SerializeField] private string fallbackCharacterName = "dummy";
+
+        [Tooltip("Sprite host used in the Editor when no config.json is served, so the fallback avatar " +
+                 "loads real sprites instead of a white quad. This only fetches public sprite PNGs -- " +
+                 "it does NOT connect the Editor to the live world server.")]
+        [SerializeField] private string editorCharactersBaseUrl = "https://factory.tehfaktoree.com";
+
         private Vector3 _lastPosition;
         private bool _hasLastPosition;
         private float _footstepTimer;
@@ -67,6 +76,9 @@ namespace Game.World
             // which is exactly what renderLocalAvatar requires) so the player can see themselves.
             Presence.renderLocalAvatar = true;
             Presence.avatarScale = avatarScale;
+            // NOTE: localFallbackCharacterName is set in Start(), AFTER charactersBaseUrl is resolved --
+            // setting it here would let WorldPresence.Update() eager-spawn the fallback avatar before
+            // the sprite host is known, leaving it stuck as a white quad.
         }
 
         private void OnEnable()
@@ -86,6 +98,16 @@ namespace Game.World
                 yield return ConfigService.Instance.EnsureLoaded();
                 Presence.charactersBaseUrl = ConfigService.Instance.Get("charactersBaseUrl");
             }
+
+            // In the Editor there is no config.json, so charactersBaseUrl is empty and the fallback
+            // avatar would be a white quad. Point at the live static sprite host so dummy renders
+            // with real sprites. Editor-only + only when unset -- production always uses config.json.
+            if (Application.isEditor && string.IsNullOrEmpty(Presence.charactersBaseUrl))
+                Presence.charactersBaseUrl = editorCharactersBaseUrl;
+
+            // Now that the sprite host is resolved, arm the fallback avatar. WorldPresence.Update()
+            // spawns it immediately (dummy), then upgrades to the real character on the server roster.
+            Presence.localFallbackCharacterName = fallbackCharacterName;
 
             if (auth == null) yield break;
 
