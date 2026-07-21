@@ -30,6 +30,11 @@ namespace Game.World
         [Tooltip("Minimum distance moved in a frame to count as walking, for footstep SFX.")]
         [SerializeField] private float footstepMoveThreshold = 0.01f;
 
+        [Tooltip("World-space scale for player avatars. Character sprites are 1 unit tall; this " +
+                 "scene's props (deer ~7 units) were assembled at a larger scale, so avatars must " +
+                 "be scaled up to read as human-sized next to them.")]
+        [SerializeField] private float avatarScale = 5f;
+
         private Vector3 _lastPosition;
         private bool _hasLastPosition;
         private float _footstepTimer;
@@ -61,6 +66,7 @@ namespace Game.World
             // player's own billboard too (this component lives on the moving LocalPlayer GameObject,
             // which is exactly what renderLocalAvatar requires) so the player can see themselves.
             Presence.renderLocalAvatar = true;
+            Presence.avatarScale = avatarScale;
         }
 
         private void OnEnable()
