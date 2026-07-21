@@ -873,6 +873,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1123226154}
   - component: {fileID: 1123226153}
+  - component: {fileID: 1123226155}
   m_Layer: 0
   m_Name: WildlifeManager
   m_TagString: Untagged
@@ -905,6 +906,21 @@ MonoBehaviour:
   areaCenter: {x: 0, y: 0, z: 0}
   areaSize: {x: 20, y: 0, z: 20}
   spawnOnStart: 1
+--- !u!114 &1123226155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1123226152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1771009e6904d1c9a521e59012cc69c3, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Game::Game.Wildlife.Wildlife2DSpawner
+  entries: []
+  avatarScale: 5
+  editorCharactersBaseUrl: https://factory.tehfaktoree.com
 --- !u!4 &1123226154
 Transform:
   m_ObjectHideFlags: 0
