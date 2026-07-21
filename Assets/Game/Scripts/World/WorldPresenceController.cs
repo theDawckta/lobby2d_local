@@ -25,7 +25,7 @@ namespace Game.World
         [SerializeField] private ChatBubble localChatBubble;
 
         [Tooltip("Seconds between footstep SFX while the local player is moving.")]
-        [SerializeField] private float footstepIntervalSeconds = 0.8f;
+        [SerializeField] private float footstepIntervalSeconds = 0.6f;
 
         [Tooltip("Minimum distance moved in a frame to count as walking, for footstep SFX.")]
         [SerializeField] private float footstepMoveThreshold = 0.01f;
