@@ -63,6 +63,14 @@ namespace Game.Wildlife
             set => fleeSfxName = value;
         }
 
+        // Public so a code spawner (e.g. Wildlife2DSpawner) can make a creature fly. Must be set
+        // BEFORE Initialize(), which reads flyHeight to lift the creature to its cruising altitude.
+        public float FlyHeight
+        {
+            get => flyHeight;
+            set => flyHeight = value;
+        }
+
         public void Initialize(Vector3 areaCenter, Vector3 areaSize, IReadOnlyList<Transform> players)
         {
             _areaCenter = areaCenter;

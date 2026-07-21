@@ -22,6 +22,9 @@ namespace Game.Wildlife
             public int count = 1;
             [Tooltip("SFX played when this creature starts fleeing (e.g. DeerGrunt, RabbitHop).")]
             public string fleeSfxName = "";
+            [Tooltip("If > 0 this 2D creature FLIES at this world height (e.g. the bird), matching " +
+                     "its 3D counterpart, instead of wandering on the floor.")]
+            public float flyHeight = 0f;
         }
 
         [Tooltip("If left empty, defaults to one 2D Deer + one 2D Rabbit.")]
@@ -36,14 +39,16 @@ namespace Game.Wildlife
 
         private IEnumerator Start()
         {
-            // Default set: a 2D deer + rabbit alongside the 3D ones (bird is handled as a flat sprite
-            // elsewhere -- its 3D-mesh-rendered sheet is unusable).
+            // Default set: a 2D deer + rabbit + bird alongside the 3D ones. The bird now renders a
+            // usable sheet (its 2.1 single-image mesh has real spread wings, unlike the old blob),
+            // so it gets a flying 2D billboard matching the 3D bird.
             if (entries == null || entries.Count == 0)
             {
                 entries = new List<Entry2D>
                 {
                     new Entry2D { characterName = "Deer",   fleeSfxName = "DeerGrunt" },
                     new Entry2D { characterName = "Rabbit", fleeSfxName = "RabbitHop" },
+                    new Entry2D { characterName = "Bird",   fleeSfxName = "BirdChirp", flyHeight = 4f },
                 };
             }
 
@@ -85,6 +90,7 @@ namespace Game.Wildlife
             // optional in WildlifeAgent, so it works fine driving a pure sprite).
             var agent = go.AddComponent<WildlifeAgent>();
             agent.FleeSfxName = e.fleeSfxName;
+            agent.FlyHeight = e.flyHeight;   // must be set before Initialize (it lifts flyers)
             agent.Initialize(areaCenter, areaSize, players);
         }
     }
