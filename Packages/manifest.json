@@ -1,5 +1,15 @@
 {
+  "scopedRegistries": [
+    {
+      "name": "package.openupm.com",
+      "url": "https://package.openupm.com",
+      "scopes": [
+        "extensions.unity"
+      ]
+    }
+  ],
   "dependencies": {
+    "com.ivanmurzak.unity.mcp": "https://github.com/IvanMurzak/Unity-MCP.git?path=/Unity-MCP-Plugin/Packages/com.ivanmurzak.unity.mcp#0.84.3",
     "com.onetimegames.coreassets": "https://github.com/theDawckta/ai-game-factory.git?path=/CoreAssets",
     "com.onetimegames.coresystems": "https://github.com/theDawckta/ai-game-factory.git?path=/CoreSystems",
     "io.colyseus.sdk": "https://github.com/colyseus/colyseus-unity3d.git?path=/Assets/Colyseus#0.16.5",
