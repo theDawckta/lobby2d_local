@@ -1,0 +1,19 @@
+{
+  "frameWidth": 256,
+  "frameHeight": 256,
+  "columns": 1,
+  "rows": 1,
+  "states": {
+    "idle": 1
+  },
+  "assetKind": "ground-decal",
+  "transparent": true,
+  "coverage": null,
+  "edgeMode": null,
+  "sliceBorder": null,
+  "styleRefs": [],
+  "description": "a single patch of flat lichen and moss speckles, wider than tall, ragged organic outline",
+  "style": "painterly stylized decay, muted desaturated palette, moss green #4A5D3A, olive #5C6B3F, dark shadow green #33421F, soft feathered organic edges, sci-fi abandoned facility reclaimed by nature aesthetic, non-cartoonish, weathered brutalist-decay mood",
+  "provider": "comfyui",
+  "specPath": ""
+}

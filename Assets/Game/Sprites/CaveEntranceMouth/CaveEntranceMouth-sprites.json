@@ -1,0 +1,19 @@
+{
+  "frameWidth": 1024,
+  "frameHeight": 640,
+  "columns": 1,
+  "rows": 1,
+  "states": {
+    "idle": 1
+  },
+  "assetKind": "structure-sprite",
+  "transparent": true,
+  "coverage": null,
+  "edgeMode": null,
+  "sliceBorder": null,
+  "styleRefs": [],
+  "description": "a dark rocky cave mouth opening broken through a rusted derelict metal facility wall, jagged rock and torn metal edges framing a pitch black interior opening, moss and vines growing over the broken edges",
+  "style": "photoreal-leaning painted environment art, derelict industrial facility aesthetic, desaturated cool grays and browns with rust accents and muted organic greens, mid-to-dark moody value range, BioShock ruins mood",
+  "provider": "comfyui",
+  "specPath": ""
+}

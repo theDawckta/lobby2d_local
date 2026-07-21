@@ -1,0 +1,19 @@
+{
+  "frameWidth": 512,
+  "frameHeight": 512,
+  "columns": 1,
+  "rows": 1,
+  "states": {
+    "idle": 1
+  },
+  "assetKind": "nine-slice-patch",
+  "transparent": true,
+  "coverage": null,
+  "edgeMode": "feathered",
+  "sliceBorder": 0.25,
+  "styleRefs": [],
+  "description": "dense overgrown moss carpet and dark damp earth completely covering old metal flooring",
+  "style": "painterly stylized decay, muted desaturated palette, moss green #4A5D3A, olive #5C6B3F, dark shadow green #33421F, soft feathered organic edges, sci-fi abandoned facility reclaimed by nature aesthetic, non-cartoonish, weathered brutalist-decay mood",
+  "provider": "comfyui",
+  "specPath": ""
+}
