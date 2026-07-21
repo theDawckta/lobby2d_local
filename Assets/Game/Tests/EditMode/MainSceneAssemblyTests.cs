@@ -144,6 +144,15 @@ public class MainSceneAssemblyTests
     }
 
     [Test]
+    public void MainScene_HasMobileTouchControls()
+    {
+        Assert.IsNotNull(FindInScene<MobileControlsOverlay>(),
+            "Scene must contain a MobileControlsOverlay so touch controls render on mobile.");
+        Assert.IsNotNull(FindInScene<VirtualAnalogStick>(),
+            "Scene must contain a VirtualAnalogStick -- LocalPlayerController auto-finds it for touch movement.");
+    }
+
+    [Test]
     public void MainScene_HasWorldAndAuthConnections()
     {
         Assert.IsNotNull(FindInScene<WorldConnectController>(), "Scene must contain a WorldConnectController.");

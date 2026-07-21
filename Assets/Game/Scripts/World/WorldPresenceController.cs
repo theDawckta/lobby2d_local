@@ -56,6 +56,11 @@ namespace Game.World
         {
             Presence = GetComponent<WorldPresence>();
             if (auth == null) auth = FindFirstObjectByType<FactoryAuth>();
+
+            // WorldPresence spawns avatars for REMOTE players only; opt in to rendering the local
+            // player's own billboard too (this component lives on the moving LocalPlayer GameObject,
+            // which is exactly what renderLocalAvatar requires) so the player can see themselves.
+            Presence.renderLocalAvatar = true;
         }
 
         private void OnEnable()

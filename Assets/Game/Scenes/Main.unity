@@ -564,6 +564,93 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &468399728
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 468399732}
+  - component: {fileID: 468399731}
+  - component: {fileID: 468399730}
+  - component: {fileID: 468399729}
+  m_Layer: 0
+  m_Name: MobileControls
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &468399729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 468399728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe5ff07b6d888dcdf6fd73060ce709c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: com.onetimegames.coresystems::OneTimeGames.CoreSystems.OrientationPanelMatch
+  panelSettings: {fileID: 11400000, guid: ae76090c030516f4192bad3b5fedc637, type: 2}
+  landscapeMatch: 1
+  portraitMatch: 0
+  portraitReferenceWidth: 0
+--- !u!114 &468399730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 468399728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85684725f5be4ebc9030bf82364682b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: com.onetimegames.coresystems::OneTimeGames.CoreSystems.MobileControlsOverlay
+  forceShow: 0
+--- !u!114 &468399731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 468399728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.dll::UnityEngine.UIElements.UIDocument
+  m_PanelSettings: {fileID: 11400000, guid: ae76090c030516f4192bad3b5fedc637, type: 2}
+  m_ParentUI: {fileID: 0}
+  sourceAsset: {fileID: 0}
+  m_SortingOrder: 100
+  m_Position: 0
+  m_WorldSpaceSizeMode: 1
+  m_WorldSpaceWidth: 1920
+  m_WorldSpaceHeight: 1080
+  m_PivotReferenceSize: 0
+  m_Pivot: 0
+  m_WorldSpaceCollider: {fileID: 0}
+--- !u!4 &468399732
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 468399728}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1329465225}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &535234851
 GameObject:
   m_ObjectHideFlags: 0
@@ -967,6 +1054,68 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1230682921}
   m_Enabled: 1
+--- !u!1 &1329465224
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1329465225}
+  - component: {fileID: 1329465226}
+  m_Layer: 0
+  m_Name: TouchStick
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1329465225
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1329465224}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 468399732}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1329465226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1329465224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4155c4ab30a428e8bca89ff8e142ed1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: com.onetimegames.coresystems::OneTimeGames.CoreSystems.VirtualAnalogStick
+  screenPosition: {x: 15, y: 15}
+  radiusPx: 75
+  deadzone: 0.15
+  sortPriority: 0
+  dynamicOrigin: 0
+  regionRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 50
+    height: 100
+  enableFlick: 0
+  flickMinDistancePx: 40
+  flickMaxSeconds: 0.15
+  enableDoubleTapHoldMode: 0
+  doubleTapMaxGapSeconds: 0.45
+  tapMaxMovePx: 35
+  tapMaxSeconds: 0.35
 --- !u!1 &1368906741
 GameObject:
   m_ObjectHideFlags: 0
@@ -1686,6 +1835,7 @@ MonoBehaviour:
   connection: {fileID: 1560289804}
   charactersBaseUrl: 
   remoteAnimation: run
+  renderLocalAvatar: 0
   positionSendIntervalSeconds: 0.15
   positionSendMinDelta: 0.05
   chatBubbleDurationSeconds: 4
@@ -1789,3 +1939,4 @@ SceneRoots:
   - {fileID: 215215227}
   - {fileID: 231729662}
   - {fileID: 16846736}
+  - {fileID: 468399732}

@@ -1,4 +1,5 @@
 {
+  "requiredAnimations": ["run"],
   "world": {
     "lifetime": "persistent",
     "worldId": "lobby2d-local",
