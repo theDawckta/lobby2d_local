@@ -134,29 +134,9 @@ public class WildlifeAgentPlayTests
     }
 
     [UnityTest]
-    public IEnumerator Agent_PlaysFleeSfx_WhenEnteringFleeingState()
+    public IEnumerator Agent_EntersFleeingState_SilentlyWhenPlayerIsNear()
     {
-        var go = Spawn("Deer", Vector3.zero);
-        var agent = go.AddComponent<WildlifeAgent>();
-        agent.FleeSfxName = "DeerGrunt";
-        var playerGo = Spawn("Player", new Vector3(1f, 0f, 0f));
-        var players = new List<Transform> { playerGo.transform };
-
-        string played = null;
-        void Handler(string name) => played = name;
-        AudioManager.Instance.OnSfxPlayed += Handler;
-
-        agent.Initialize(Vector3.zero, new Vector3(30f, 0f, 30f), players);
-        yield return null;
-
-        AudioManager.Instance.OnSfxPlayed -= Handler;
-        Assert.AreEqual(WildlifeState.Fleeing, agent.CurrentState);
-        Assert.AreEqual("DeerGrunt", played);
-    }
-
-    [UnityTest]
-    public IEnumerator Agent_DoesNotPlaySfx_WhenFleeSfxNameIsEmpty()
-    {
+        // Animals flee when a player gets close, but make NO sound doing so (the flee SFX was removed).
         var go = Spawn("Deer", Vector3.zero);
         var agent = go.AddComponent<WildlifeAgent>();
         var playerGo = Spawn("Player", new Vector3(1f, 0f, 0f));
@@ -171,7 +151,7 @@ public class WildlifeAgentPlayTests
 
         AudioManager.Instance.OnSfxPlayed -= Handler;
         Assert.AreEqual(WildlifeState.Fleeing, agent.CurrentState);
-        Assert.IsFalse(fired);
+        Assert.IsFalse(fired, "Approaching an animal must not play any SFX.");
     }
 
     [UnityTest]

@@ -93,22 +93,6 @@ public class WildlifeManagerPlayTests
     }
 
     [UnityTest]
-    public IEnumerator SpawnAll_AssignsFleeSfxName_FromSpawnEntry()
-    {
-        var managerGo = Spawn("WildlifeManager");
-        var manager = managerGo.AddComponent<WildlifeManager>();
-        manager.SpawnOnStart = false;
-        var deerPrefab = MakePrefabLikeObject("DeerPrefab");
-        manager.SpawnEntries.Add(new WildlifeSpawnEntry { prefab = deerPrefab, count = 1, fleeSfxName = "DeerGrunt" });
-
-        manager.SpawnAll();
-        yield return null;
-
-        foreach (var go in manager.SpawnedWildlife) _spawned.Add(go.gameObject);
-        Assert.AreEqual("DeerGrunt", manager.SpawnedWildlife[0].FleeSfxName);
-    }
-
-    [UnityTest]
     public IEnumerator SpawnOne_AddsWildlifeAgentComponent_WhenPrefabLacksOne()
     {
         var managerGo = Spawn("WildlifeManager");

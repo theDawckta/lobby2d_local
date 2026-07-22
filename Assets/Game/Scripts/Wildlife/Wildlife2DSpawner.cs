@@ -20,8 +20,6 @@ namespace Game.Wildlife
             public string moveAnimation = "walk";
             public string idleAnimation = "idle";
             public int count = 1;
-            [Tooltip("SFX played when this creature starts fleeing (e.g. DeerGrunt, RabbitHop).")]
-            public string fleeSfxName = "";
             [Tooltip("If > 0 this 2D creature FLIES at this world height (e.g. the bird), matching " +
                      "its 3D counterpart, instead of wandering on the floor.")]
             public float flyHeight = 0f;
@@ -46,9 +44,9 @@ namespace Game.Wildlife
             {
                 entries = new List<Entry2D>
                 {
-                    new Entry2D { characterName = "Deer",   fleeSfxName = "DeerGrunt" },
-                    new Entry2D { characterName = "Rabbit", fleeSfxName = "RabbitHop" },
-                    new Entry2D { characterName = "Bird",   fleeSfxName = "BirdChirp", flyHeight = 4f },
+                    new Entry2D { characterName = "Deer" },
+                    new Entry2D { characterName = "Rabbit" },
+                    new Entry2D { characterName = "Bird", flyHeight = 4f },
                 };
             }
 
@@ -89,7 +87,6 @@ namespace Game.Wildlife
             // Movement: the same wander/flee agent the 3D creatures use (GlbCharacterAnimator is
             // optional in WildlifeAgent, so it works fine driving a pure sprite).
             var agent = go.AddComponent<WildlifeAgent>();
-            agent.FleeSfxName = e.fleeSfxName;
             agent.FlyHeight = e.flyHeight;   // must be set before Initialize (it lifts flyers)
             agent.Initialize(areaCenter, areaSize, players);
         }
