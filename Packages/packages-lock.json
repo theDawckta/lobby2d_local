@@ -18,7 +18,7 @@
       "dependencies": {
         "com.unity.textmeshpro": "4.0.0"
       },
-      "hash": "f4bbc1571a7156c390811dad8dfd28464b5696eb"
+      "hash": "fb9e2a03c8cca313df94f036be8851b667b58c93"
     },
     "com.onetimegames.coresystems": {
       "version": "https://github.com/theDawckta/ai-game-factory.git?path=/CoreSystems",
