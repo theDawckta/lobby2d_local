@@ -112,3 +112,6 @@ InitTestScene*.unity*
 # Windows reserved device name -- cannot be indexed by git
 nul
 **/nul
+
+# Machine-local user settings (holds the Unity MCP auth token -- keep it out of git)
+/[Uu]serSettings/
