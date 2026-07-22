@@ -119,6 +119,12 @@ namespace Game.Environment
         public void HandleToggleChanged(bool on)
         {
             _isOpen = on;
+            // Don't replay an animation for a pose the door is already in. OneShotSpriteAnimator's
+            // Open()/Close() always play from the OPPOSITE extreme, so applying the initial "closed"
+            // snapshot on spawn via Close() would visibly jump the door to the open frame and animate
+            // it shut. The animator already starts on the correct held frame (Awake -> startOpen), so
+            // only drive it on an actual state change.
+            if (on == _animator.IsOpen) return;
             if (on) _animator.Open(); else _animator.Close();
         }
     }

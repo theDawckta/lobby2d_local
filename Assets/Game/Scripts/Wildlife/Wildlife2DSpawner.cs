@@ -23,6 +23,10 @@ namespace Game.Wildlife
             [Tooltip("If > 0 this 2D creature FLIES at this world height (e.g. the bird), matching " +
                      "its 3D counterpart, instead of wandering on the floor.")]
             public float flyHeight = 0f;
+            [Tooltip("World-space billboard scale for THIS creature so it matches the on-screen size " +
+                     "of its 3D GLB counterpart. If <= 0, falls back to the shared avatarScale. Set " +
+                     "per-creature because a deer, rabbit and bird are very different real sizes.")]
+            public float scale = 0f;
         }
 
         [Tooltip("If left empty, defaults to one 2D Deer + one 2D Rabbit.")]
@@ -42,11 +46,14 @@ namespace Game.Wildlife
             // so it gets a flying 2D billboard matching the 3D bird.
             if (entries == null || entries.Count == 0)
             {
+                // Per-creature scale matched to the measured height of each 3D GLB counterpart
+                // (deer/rabbit GLBs ~1.8 units tall, bird ~0.7) so the 2D billboards read the same
+                // size on screen as the 3D creatures instead of the old uniform (oversized) 5.
                 entries = new List<Entry2D>
                 {
-                    new Entry2D { characterName = "Deer" },
-                    new Entry2D { characterName = "Rabbit" },
-                    new Entry2D { characterName = "Bird", flyHeight = 4f },
+                    new Entry2D { characterName = "Deer", scale = 3f },
+                    new Entry2D { characterName = "Rabbit", scale = 1f },
+                    new Entry2D { characterName = "Bird", flyHeight = 4f, scale = 0.8f },
                 };
             }
 
@@ -74,7 +81,7 @@ namespace Game.Wildlife
             var go = new GameObject($"Wildlife2D_{e.characterName}");
             go.transform.SetParent(transform, false);
             go.transform.position = WildlifeMovement.PickWanderTarget(areaCenter, areaSize);
-            go.transform.localScale = Vector3.one * avatarScale;
+            go.transform.localScale = Vector3.one * (e.scale > 0f ? e.scale : avatarScale);
 
             // Renderer: loads the creature's sheets + animates by this transform's movement.
             var sca = go.AddComponent<SpriteCharacterAnimator>();
