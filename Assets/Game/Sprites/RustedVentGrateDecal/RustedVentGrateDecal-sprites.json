@@ -1,0 +1,19 @@
+{
+  "frameWidth": 256,
+  "frameHeight": 384,
+  "columns": 1,
+  "rows": 1,
+  "states": {
+    "idle": 1
+  },
+  "assetKind": "ground-decal",
+  "transparent": true,
+  "coverage": null,
+  "edgeMode": null,
+  "sliceBorder": null,
+  "styleRefs": [],
+  "description": "A single rusted metal vent grate mounted flush on a wall, roughly rectangular with 4-6 horizontal louvered slats, four corner bolts/rivets stained with rust, patchy oxidation concentrated at slat edges, seams and fastening points, worn and slightly chipped/corroded mounting frame corners, faint dark grime in recessed grooves with a subtle muted green-brown tint, vertical rust-stain streaks bleeding downward from the lower edge and tapering to transparency, isolated on a fully transparent background, no text or signage, no wall base included",
+  "style": "decayed industrial realism, painterly PBR-like texture detail, muted greys #4a4a48 to #6b6b66 for base metal, rust oranges and umbers #8a4a2c #6b3a20 #a35c34, dark grime blacks #201d1a in recesses, flat ambient lighting with subtle depth shading on louvers and faint highlight catch on rivets, no strong directional light baked in, irregular worn silhouette, soft feathered edge fading to transparency, quiet oppressive tone, not cartoonish or oversaturated",
+  "provider": "comfyui",
+  "specPath": "Assets/Game/Design/RustyVentGrateWallDecal/spec.md"
+}
