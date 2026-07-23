@@ -1,0 +1,12 @@
+{
+  "assetKind": "sfx",
+  "description": "Heavy stone door creaking open slowly",
+  "duration": 1.5,
+  "sfxProvider": "stableaudio",
+  "seed": null,
+  "provider": "audiocraft",
+  "specPath": "",
+  "format": "wav",
+  "audio": "CaveDoorCreak.wav",
+  "runtimeAssetPath": "Assets/Game/Resources/Audio/SFX/CaveDoorCreak.wav"
+}
