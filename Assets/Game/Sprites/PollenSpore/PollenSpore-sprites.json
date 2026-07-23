@@ -1,0 +1,19 @@
+{
+  "frameWidth": 64,
+  "frameHeight": 64,
+  "columns": 1,
+  "rows": 1,
+  "states": {
+    "idle": 1
+  },
+  "assetKind": "animated-prop",
+  "transparent": true,
+  "coverage": null,
+  "edgeMode": null,
+  "sliceBorder": null,
+  "styleRefs": [],
+  "description": "a single small pollen/spore particle, an irregular soft-edged roundish blob with feathered edges, no hard outline, faint near-white highlight suggesting it catches ambient light",
+  "style": "soft organic painterly particle, muted nature tones (pale yellow-green, dusty gold, faint moss green), semi-transparent throughout, gentle luminous quality, no hard edges, no cartoon outline, matches a derelict overgrown facility atmosphere",
+  "provider": "comfyui",
+  "specPath": "Assets/Game/Design/PollenEffectDriftingPollenspores/spec.md"
+}

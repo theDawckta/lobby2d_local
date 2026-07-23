@@ -1,0 +1,19 @@
+{
+  "frameWidth": 512,
+  "frameHeight": 512,
+  "columns": 1,
+  "rows": 1,
+  "states": {
+    "idle": 1
+  },
+  "assetKind": "tileable-texture",
+  "transparent": false,
+  "coverage": null,
+  "edgeMode": null,
+  "sliceBorder": null,
+  "styleRefs": [],
+  "description": "Weathered metallic floor panel surface with embedded circuit-board style etched line traces, metal plating seams, subtle rust and oxidation stains, scratches and scuffs. Dark charcoal and gunmetal gray base with muted copper and tarnished silver circuit trace lines and faint oxidized green-blue corrosion patches. No moss, no vines, no props, no text. Seamlessly tileable in all directions.",
+  "style": "high-detail painted texture, sci-fi derelict facility, weathered PCB and industrial raised-floor panel aesthetic, dark neutral palette with muted copper and oxidized green-blue accents, dim powered-down atmosphere, subtle noise and wear, no glossy chrome, flat orthographic top-down lighting",
+  "provider": "comfyui",
+  "specPath": "Assets/Game/Design/FloorTextureWeatheredMetallicCircuitry/spec.md"
+}
