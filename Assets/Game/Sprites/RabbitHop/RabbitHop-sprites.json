@@ -1,0 +1,12 @@
+{
+  "assetKind": "sfx",
+  "description": "Rabbit hopping sound",
+  "duration": 0.3,
+  "sfxProvider": "stableaudio",
+  "seed": null,
+  "provider": "audiocraft",
+  "specPath": "",
+  "format": "wav",
+  "audio": "RabbitHop.wav",
+  "runtimeAssetPath": "Assets/Game/Resources/Audio/SFX/RabbitHop.wav"
+}

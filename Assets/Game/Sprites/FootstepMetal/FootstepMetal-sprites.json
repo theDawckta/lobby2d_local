@@ -1,0 +1,12 @@
+{
+  "assetKind": "sfx",
+  "description": "Footstep on metal surface",
+  "duration": 0.5,
+  "sfxProvider": "stableaudio",
+  "seed": null,
+  "provider": "audiocraft",
+  "specPath": "",
+  "format": "wav",
+  "audio": "FootstepMetal.wav",
+  "runtimeAssetPath": "Assets/Game/Resources/Audio/SFX/FootstepMetal.wav"
+}

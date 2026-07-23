@@ -1,0 +1,12 @@
+{
+  "assetKind": "sfx",
+  "description": "Bird chirping sound",
+  "duration": 0.4,
+  "sfxProvider": "stableaudio",
+  "seed": null,
+  "provider": "audiocraft",
+  "specPath": "",
+  "format": "wav",
+  "audio": "BirdChirp.wav",
+  "runtimeAssetPath": "Assets/Game/Resources/Audio/SFX/BirdChirp.wav"
+}

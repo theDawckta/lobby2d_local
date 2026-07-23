@@ -1,0 +1,12 @@
+{
+  "assetKind": "sfx",
+  "description": "Soft, airy sound for drifting pollen",
+  "duration": 2,
+  "sfxProvider": "stableaudio",
+  "seed": null,
+  "provider": "audiocraft",
+  "specPath": "",
+  "format": "wav",
+  "audio": "PollenDrift.wav",
+  "runtimeAssetPath": "Assets/Game/Resources/Audio/SFX/PollenDrift.wav"
+}

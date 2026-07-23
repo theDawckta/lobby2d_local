@@ -1,0 +1,12 @@
+{
+  "assetKind": "sfx",
+  "description": "Generic emote play sound",
+  "duration": 0.2,
+  "sfxProvider": "stableaudio",
+  "seed": null,
+  "provider": "audiocraft",
+  "specPath": "",
+  "format": "wav",
+  "audio": "EmotePlay.wav",
+  "runtimeAssetPath": "Assets/Game/Resources/Audio/SFX/EmotePlay.wav"
+}

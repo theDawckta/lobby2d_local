@@ -1,0 +1,12 @@
+{
+  "assetKind": "sfx",
+  "description": "Button click for mute toggle on",
+  "duration": 0.1,
+  "sfxProvider": "stableaudio",
+  "seed": null,
+  "provider": "audiocraft",
+  "specPath": "",
+  "format": "wav",
+  "audio": "MuteToggleOn.wav",
+  "runtimeAssetPath": "Assets/Game/Resources/Audio/SFX/MuteToggleOn.wav"
+}

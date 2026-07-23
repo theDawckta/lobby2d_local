@@ -1,0 +1,12 @@
+{
+  "assetKind": "sfx",
+  "description": "Electrical spark flicker",
+  "duration": 0.2,
+  "sfxProvider": "stableaudio",
+  "seed": null,
+  "provider": "audiocraft",
+  "specPath": "",
+  "format": "wav",
+  "audio": "SparkFlicker.wav",
+  "runtimeAssetPath": "Assets/Game/Resources/Audio/SFX/SparkFlicker.wav"
+}

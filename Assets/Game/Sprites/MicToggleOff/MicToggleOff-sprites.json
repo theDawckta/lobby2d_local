@@ -1,0 +1,12 @@
+{
+  "assetKind": "sfx",
+  "description": "Button click for mic toggle off",
+  "duration": 0.1,
+  "sfxProvider": "stableaudio",
+  "seed": null,
+  "provider": "audiocraft",
+  "specPath": "",
+  "format": "wav",
+  "audio": "MicToggleOff.wav",
+  "runtimeAssetPath": "Assets/Game/Resources/Audio/SFX/MicToggleOff.wav"
+}
