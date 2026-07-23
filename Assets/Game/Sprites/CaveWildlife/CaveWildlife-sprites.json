@@ -1,0 +1,11 @@
+{
+  "assetKind": "ambient",
+  "description": "cave ambience with wildlife -- bats fluttering and faint distant screeches, echoing animal calls deep in the cavern, chirping cave crickets, occasional water drips echoing in a damp stone cave, faint low subterranean rumble",
+  "duration": 20,
+  "overlap": 2,
+  "provider": "audiocraft",
+  "seed": null,
+  "specPath": "",
+  "format": "wav",
+  "audio": "CaveWildlife.wav"
+}

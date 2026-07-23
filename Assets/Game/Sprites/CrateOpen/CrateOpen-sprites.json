@@ -1,0 +1,12 @@
+{
+  "assetKind": "sfx",
+  "description": "Metal crate opening with a creak",
+  "duration": 1,
+  "sfxProvider": "stableaudio",
+  "seed": null,
+  "provider": "audiocraft",
+  "specPath": "",
+  "format": "wav",
+  "audio": "CrateOpen.wav",
+  "runtimeAssetPath": "Assets/Game/Resources/Audio/SFX/CrateOpen.wav"
+}
