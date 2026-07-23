@@ -1,0 +1,27 @@
+{
+  "frameWidth": 512,
+  "frameHeight": 512,
+  "columns": 1,
+  "rows": 1,
+  "states": {
+    "idle": 1
+  },
+  "assetKind": "rigged-prop-3d",
+  "transparent": false,
+  "coverage": null,
+  "edgeMode": null,
+  "sliceBorder": null,
+  "styleRefs": [],
+  "description": "A reinforced military-style storage crate, closed, roughly waist-to-chest height, constructed of riveted dark gunmetal metal panels with a hinged flat lid on top. Reinforced lighter scratched-metal edge trim and corner brackets. A latch/lock mechanism on the front, appearing disengaged and broken. One small embedded status light near the latch, dark and unlit. Rust streaks in burnt orange and umber running down from seams and rivets. Patches of desaturated green moss and small vine strands clinging to the base and lid seam, with one or two small cracks in the side plating. Faint worn abstract stenciled tech marking on one panel, illegible as text. High-tech-gone-derelict abandoned facility aesthetic.",
+  "style": "realistic semi-hard-surface industrial PBR prop, low-to-mid poly realism, not stylized or toon shaded, dark gunmetal gray-blue base metal (#3A3F44) with scratched lighter metal highlights (#8C9096), rust/grime accents (#7A4B2A, #5C3A1E), mossy green growth (#4C5A3A, #6B7A4A) limited to crevices and seams, muted amber or cyan tech accent light, sci-fi military supply cache look crossed with overgrown abandoned facility, consistent with weathered metallic circuitry floor and buckled metal wall textures",
+  "provider": "comfyui",
+  "specPath": "Assets/Game/Design/SupplyCrate/spec.md",
+  "format": "glb",
+  "glb": "SupplyCrate.glb",
+  "clips": [
+    "Open"
+  ],
+  "clipName": "Open",
+  "wrapMode": "clampForever",
+  "runtimeAssetPath": "Assets/StreamingAssets/SupplyCrate/SupplyCrate.glb"
+}

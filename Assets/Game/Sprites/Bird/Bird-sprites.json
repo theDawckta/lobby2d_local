@@ -1,0 +1,30 @@
+{
+  "frameWidth": 1024,
+  "frameHeight": 1024,
+  "columns": 1,
+  "rows": 1,
+  "states": {
+    "idle": 1
+  },
+  "assetKind": "creature-3d",
+  "transparent": false,
+  "coverage": null,
+  "edgeMode": null,
+  "sliceBorder": null,
+  "styleRefs": [],
+  "description": "A small songbird resembling a sparrow or robin, standing in a neutral resting pose on the ground, beak-to-tail body length of a small passerine bird, with visible beak, small dark eyes, thin legs and feet with clawed toes, plumage grouped realistically across head, back, wings, breast, and tail, muted brown and tan back feathers, soft gray head tones, subtle rust-orange breast patch, matte naturalistic feather texturing with soft color variation, centered single subject on neutral ground, realistic proportions of a real-world small wild bird",
+  "style": "realistic naturalistic 3D game creature, low-to-mid poly (2000-4000 triangles), matte non-glossy plumage material, PBR albedo and normal maps, muted natural color palette of browns tans and soft grays with a small rust-orange or blue-gray accent, no cartoon stylization, believable wild bird anatomy, calm non-threatening ambient wildlife design",
+  "provider": "comfyui",
+  "specPath": "Assets/Game/Design/Bird/spec.md",
+  "format": "glb",
+  "glb": "BirdWildlife.glb",
+  "clips": [
+    "Idle",
+    "Walk"
+  ],
+  "creatureType": "bird",
+  "idleClip": "Idle",
+  "moveClip": "Walk",
+  "oneShotClips": [],
+  "runtimeAssetPath": "Assets/StreamingAssets/Wildlife/BirdWildlife.glb"
+}

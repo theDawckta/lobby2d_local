@@ -1,0 +1,30 @@
+{
+  "frameWidth": 512,
+  "frameHeight": 512,
+  "columns": 1,
+  "rows": 1,
+  "states": {
+    "idle": 1
+  },
+  "assetKind": "creature-3d",
+  "transparent": false,
+  "coverage": null,
+  "edgeMode": null,
+  "sliceBorder": null,
+  "styleRefs": [],
+  "description": "A single realistic whitetail deer standing in a neutral resting pose, viewed in a calm side-three-quarter stance, natural quadruped proportions, muted brown and tan coat with off-white belly and tail patch, darker fur along the spine, no antlers glow, no fantasy or tech elements, weathered and slightly desaturated coat texture",
+  "style": "realistic semi-grounded 3D game art, mid-poly game-ready model, natural muted earth-tone palette, non-glossy weathered fur texture, consistent with a desaturated overgrown industrial facility environment, no cartoon or low-poly faceted stylization",
+  "provider": "comfyui",
+  "specPath": "Assets/Game/Design/Deer/spec.md",
+  "format": "glb",
+  "glb": "DeerWildlife.glb",
+  "clips": [
+    "Idle",
+    "Walk"
+  ],
+  "creatureType": "fox",
+  "idleClip": "Idle",
+  "moveClip": "Walk",
+  "oneShotClips": [],
+  "runtimeAssetPath": "Assets/StreamingAssets/Wildlife/DeerWildlife.glb"
+}

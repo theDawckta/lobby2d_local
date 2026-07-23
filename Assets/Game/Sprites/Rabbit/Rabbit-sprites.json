@@ -1,0 +1,30 @@
+{
+  "frameWidth": 1024,
+  "frameHeight": 1024,
+  "columns": 1,
+  "rows": 1,
+  "states": {
+    "idle": 1
+  },
+  "assetKind": "creature-3d",
+  "transparent": false,
+  "coverage": null,
+  "edgeMode": null,
+  "sliceBorder": null,
+  "styleRefs": [],
+  "description": "A realistic small wild rabbit standing neutrally on all four feet, nose to tail-base body length about 0.35m, ears upright, head level, tail down. Compact rounded body, long upright ears, short fluffy tail, powerful hind legs, small forelegs. Mottled brown/grey-brown fur on body and back, lighter cream/off-white underbelly and inner ears, darker brown shading on ear tips and back. Matte short-fur texture with subtle normal detail, no shine, no fur strand geometry. Neutral standing rest pose, centered, no accessories, no clothing, no anthropomorphism.",
+  "style": "realistic low-to-mid poly 3D game asset, desaturated muted natural wildlife palette matching an overgrown industrial facility environment, matte non-glossy PBR fur material with subtle normal map, small specular highlight on eyes only, consistent fidelity and shading approach with a companion deer creature asset",
+  "provider": "comfyui",
+  "specPath": "Assets/Game/Design/Rabbit/spec.md",
+  "format": "glb",
+  "glb": "RabbitWildlife.glb",
+  "clips": [
+    "Idle",
+    "Walk"
+  ],
+  "creatureType": "fox",
+  "idleClip": "Idle",
+  "moveClip": "Walk",
+  "oneShotClips": [],
+  "runtimeAssetPath": "Assets/StreamingAssets/Wildlife/RabbitWildlife.glb"
+}
