@@ -1,0 +1,19 @@
+{
+  "frameWidth": 2048,
+  "frameHeight": 1024,
+  "columns": 1,
+  "rows": 1,
+  "states": {
+    "idle": 1
+  },
+  "assetKind": "skybox",
+  "transparent": false,
+  "coverage": null,
+  "edgeMode": null,
+  "sliceBorder": null,
+  "styleRefs": [],
+  "description": "360-degree equirectangular panorama of the interior of a large derelict industrial facility reclaimed by nature. Ceiling at the top pole shows partially collapsed industrial roofing with rusted structural beams and open gaps, hazy pale-gold volumetric light shafts streaming down through the breaks, dust motes suspended in the light. Horizon band all around shows rusted corroded metal wall paneling, corroded catwalks and gantries, moss and vine growth climbing beams and walls, damp water staining and discoloration on metal and concrete surfaces. Floor at the bottom pole shows cracked concrete and metal flooring with moss patches, minor rubble texture baked into the surface, shallow water pooling and damp patches. Soft depth fog toward distant darker areas of the facility. No props, no characters, no text, no visible frame or seam, seamless 360-degree horizontal wrap.",
+  "style": "realistic painterly matte-painting environment art, desaturated industrial grays and rust-oranges, muted mossy greens, soft hazy off-white and pale gold light shafts, moody diffused atmospheric lighting, somber melancholic abandoned-but-alive tone, high detail equirectangular panorama, no cartoonish colors, no vignette, no watermark",
+  "provider": "comfyui",
+  "specPath": "Assets/Game/Design/SkyboxOvergrownFacilityPanorama/spec.md"
+}
