@@ -1470,11 +1470,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4155c4ab30a428e8bca89ff8e142ed1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: com.onetimegames.coresystems::OneTimeGames.CoreSystems.VirtualAnalogStick
-  screenPosition: {x: 15, y: 15}
   radiusPx: 75
   deadzone: 0.15
   sortPriority: 0
-  dynamicOrigin: 0
   regionRect:
     serializedVersion: 2
     x: 0
