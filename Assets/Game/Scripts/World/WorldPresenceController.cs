@@ -24,6 +24,17 @@ namespace Game.World
         [Tooltip("Optional: shows the local player's own chat bubble when their message echoes back.")]
         [SerializeField] private ChatBubble localChatBubble;
 
+        [Tooltip("Optional: the local player's speech thought-bubble. Resolved automatically from " +
+                 "this GameObject if left unassigned. Its height is scaled by avatarScale below, same " +
+                 "as localChatBubble -- both default to CoreSystems' baseline (avatarScale == 1) offset.")]
+        [SerializeField] private ThoughtBubble localThoughtBubble;
+
+        // CoreSystems' ChatBubble/ThoughtBubble default height offset, tuned for a character at
+        // avatarScale == 1 (~1.75 units tall). Remote players' bubbles scale automatically because
+        // WorldPresence parents them under a GameObject whose localScale IS avatarScale; the local
+        // player's bubbles live on this (unscaled) root instead, so they must be scaled by hand here.
+        const float BaselineBubbleHeight = 1.6f;
+
         [Tooltip("Seconds between footstep SFX while the local player is moving.")]
         [SerializeField] private float footstepIntervalSeconds = 0.6f;
 
@@ -65,7 +76,13 @@ namespace Game.World
         public ChatBubble LocalChatBubble
         {
             get => localChatBubble;
-            set => localChatBubble = value;
+            set { localChatBubble = value; ApplyBubbleHeight(localChatBubble); }
+        }
+
+        public ThoughtBubble LocalThoughtBubble
+        {
+            get => localThoughtBubble;
+            set { localThoughtBubble = value; ApplyBubbleHeight(localThoughtBubble); }
         }
 
         // Fired when this game object sends an emote -- the server broadcasts emotes to everyone
@@ -76,6 +93,7 @@ namespace Game.World
         {
             Presence = GetComponent<WorldPresence>();
             if (auth == null) auth = FindFirstObjectByType<FactoryAuth>();
+            if (localThoughtBubble == null) localThoughtBubble = GetComponent<ThoughtBubble>();
 
             // WorldPresence spawns avatars for REMOTE players only; opt in to rendering the local
             // player's own billboard too (this component lives on the moving LocalPlayer GameObject,
@@ -85,7 +103,19 @@ namespace Game.World
             // NOTE: localFallbackCharacterName is set in Start(), AFTER charactersBaseUrl is resolved --
             // setting it here would let WorldPresence.Update() eager-spawn the fallback avatar before
             // the sprite host is known, leaving it stuck as a white quad.
+
+            // Match the local avatar's own scale-up (see the avatarScale tooltip above) -- without
+            // this the bubbles sit at the fixed CoreSystems baseline height and land partway up the
+            // (now much taller) character instead of above its head.
+            ApplyBubbleHeight(localChatBubble);
+            ApplyBubbleHeight(localThoughtBubble);
         }
+
+        // Scales CoreSystems' default bubble height by avatarScale (see the field's tooltip). Called
+        // from Awake() for scene-wired bubbles, and again whenever LocalChatBubble/LocalThoughtBubble
+        // is assigned later (e.g. in tests, or a game that spawns/finds its local bubbles at runtime).
+        void ApplyBubbleHeight(ChatBubble bubble) => bubble?.SetHeightOffset(BaselineBubbleHeight * avatarScale);
+        void ApplyBubbleHeight(ThoughtBubble bubble) => bubble?.SetHeightOffset(BaselineBubbleHeight * avatarScale);
 
         private void OnEnable()
         {

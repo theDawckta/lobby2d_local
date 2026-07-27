@@ -252,4 +252,50 @@ public class WorldPresenceControllerPlayTests
         Assert.IsNotNull(label);
         Assert.IsFalse(label.transform.parent.gameObject.activeSelf);
     }
+
+    [UnityTest]
+    public IEnumerator LocalChatBubble_HeightIsScaledByAvatarScale_WhenAssignedAfterAwake()
+    {
+        // Real scene wiring assigns localChatBubble via the Inspector (present before Awake), but
+        // this exercises the same scaling through the public setter -- the fixed regression: a
+        // character rendered at avatarScale != 1 (this scene uses 5, see WorldPresenceController's
+        // avatarScale tooltip) must not leave the bubble at CoreSystems' baseline 1.6 offset, or it
+        // lands partway up the character instead of above its head.
+        var go = Spawn("WorldPresenceController");
+        var bubbleGo = Spawn("LocalChatBubble");
+        var bubble = bubbleGo.AddComponent<ChatBubble>();
+
+        var controller = go.AddComponent<WorldPresenceController>();
+        controller.LocalChatBubble = bubble;
+        yield return null;
+
+        var canvas = bubbleGo.transform.Find("ChatBubbleCanvas");
+        Assert.AreEqual(8f, canvas.localPosition.y, "1.6 baseline * avatarScale 5 == 8");
+    }
+
+    [UnityTest]
+    public IEnumerator LocalThoughtBubble_HeightIsScaledByAvatarScale_WhenAssignedAfterAwake()
+    {
+        var go = Spawn("WorldPresenceController");
+        var bubbleGo = Spawn("LocalThoughtBubble");
+        var bubble = bubbleGo.AddComponent<ThoughtBubble>();
+
+        var controller = go.AddComponent<WorldPresenceController>();
+        controller.LocalThoughtBubble = bubble;
+        yield return null;
+
+        var canvas = bubbleGo.transform.Find("ThoughtBubbleCanvas");
+        Assert.AreEqual(8f, canvas.localPosition.y, "1.6 baseline * avatarScale 5 == 8");
+    }
+
+    [UnityTest]
+    public IEnumerator LocalThoughtBubble_IsAutoResolvedFromSameGameObject_WhenNotAssigned()
+    {
+        var go = Spawn("WorldPresenceController");
+        var bubble = go.AddComponent<ThoughtBubble>();
+        var controller = go.AddComponent<WorldPresenceController>();
+        yield return null;
+
+        Assert.AreSame(bubble, controller.LocalThoughtBubble);
+    }
 }
