@@ -18,7 +18,7 @@
       "dependencies": {
         "com.unity.textmeshpro": "4.0.0"
       },
-      "hash": "48c93824d9b79272fc7c575effd18d0572ac0fb2"
+      "hash": "9e923570082992d7384b295ec836572290b7cdf4"
     },
     "com.onetimegames.coresystems": {
       "version": "https://github.com/theDawckta/ai-game-factory.git?path=/CoreSystems",
@@ -27,7 +27,7 @@
       "dependencies": {
         "com.unity.inputsystem": "1.11.2"
       },
-      "hash": "48c93824d9b79272fc7c575effd18d0572ac0fb2"
+      "hash": "9e923570082992d7384b295ec836572290b7cdf4"
     },
     "com.unity.2d.sprite": {
       "version": "1.0.0",
