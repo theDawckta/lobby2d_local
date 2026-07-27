@@ -254,27 +254,35 @@ public class WorldPresenceControllerPlayTests
     }
 
     [UnityTest]
-    public IEnumerator LocalChatBubble_HeightIsScaledByAvatarScale_WhenAssignedAfterAwake()
+    public IEnumerator LocalChatBubble_HeightTracksAvatarsActualRenderedTop()
     {
-        // Real scene wiring assigns localChatBubble via the Inspector (present before Awake), but
-        // this exercises the same scaling through the public setter -- the fixed regression: a
-        // character rendered at avatarScale != 1 (this scene uses 5, see WorldPresenceController's
-        // avatarScale tooltip) must not leave the bubble at CoreSystems' baseline 1.6 offset, or it
-        // lands partway up the character instead of above its head.
+        // The fixed regression: a fixed "characters are N units tall" constant times avatarScale
+        // guessed wrong in both directions (landed at the character's thighs when guessed too low,
+        // then far above its head when guessed too high) because CoreSystems' ChatBubble default
+        // assumes a baseline sprite scale this scene doesn't reliably match. The bubble must instead
+        // track the avatar's OWN measured SpriteRenderer bounds, whatever they actually are -- this
+        // asserts against that same live measurement rather than a hardcoded expected number, so it
+        // stays correct regardless of avatarScale, character, or sprite import settings.
         var go = Spawn("WorldPresenceController");
         var bubbleGo = Spawn("LocalChatBubble");
         var bubble = bubbleGo.AddComponent<ChatBubble>();
 
         var controller = go.AddComponent<WorldPresenceController>();
         controller.LocalChatBubble = bubble;
-        yield return null;
+        yield return WaitUntilOrTimeout(() => controller.Presence.LocalAvatarTransform != null);
+        Assert.IsNotNull(controller.Presence.LocalAvatarTransform, "local avatar never spawned");
 
+        var renderer = controller.Presence.LocalAvatarTransform.GetComponent<SpriteRenderer>();
+        yield return WaitUntilOrTimeout(() => renderer.sprite != null);
+        yield return null; // let UpdateBubbleHeights() apply the now-available measurement
+
+        var expected = (renderer.bounds.max.y - go.transform.position.y) + 0.15f; // default bubbleHeightPadding
         var canvas = bubbleGo.transform.Find("ChatBubbleCanvas");
-        Assert.AreEqual(8f, canvas.localPosition.y, "1.6 baseline * avatarScale 5 == 8");
+        Assert.AreEqual(expected, canvas.localPosition.y, 0.01f);
     }
 
     [UnityTest]
-    public IEnumerator LocalThoughtBubble_HeightIsScaledByAvatarScale_WhenAssignedAfterAwake()
+    public IEnumerator LocalThoughtBubble_HeightTracksAvatarsActualRenderedTop()
     {
         var go = Spawn("WorldPresenceController");
         var bubbleGo = Spawn("LocalThoughtBubble");
@@ -282,10 +290,16 @@ public class WorldPresenceControllerPlayTests
 
         var controller = go.AddComponent<WorldPresenceController>();
         controller.LocalThoughtBubble = bubble;
+        yield return WaitUntilOrTimeout(() => controller.Presence.LocalAvatarTransform != null);
+        Assert.IsNotNull(controller.Presence.LocalAvatarTransform, "local avatar never spawned");
+
+        var renderer = controller.Presence.LocalAvatarTransform.GetComponent<SpriteRenderer>();
+        yield return WaitUntilOrTimeout(() => renderer.sprite != null);
         yield return null;
 
+        var expected = (renderer.bounds.max.y - go.transform.position.y) + 0.15f;
         var canvas = bubbleGo.transform.Find("ThoughtBubbleCanvas");
-        Assert.AreEqual(8f, canvas.localPosition.y, "1.6 baseline * avatarScale 5 == 8");
+        Assert.AreEqual(expected, canvas.localPosition.y, 0.01f);
     }
 
     [UnityTest]

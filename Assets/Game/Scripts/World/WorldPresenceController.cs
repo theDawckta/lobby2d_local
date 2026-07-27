@@ -25,15 +25,13 @@ namespace Game.World
         [SerializeField] private ChatBubble localChatBubble;
 
         [Tooltip("Optional: the local player's speech thought-bubble. Resolved automatically from " +
-                 "this GameObject if left unassigned. Its height is scaled by avatarScale below, same " +
-                 "as localChatBubble -- both default to CoreSystems' baseline (avatarScale == 1) offset.")]
+                 "this GameObject if left unassigned. Its height is kept pinned above the avatar's " +
+                 "actual rendered top (see UpdateBubbleHeights), same as localChatBubble.")]
         [SerializeField] private ThoughtBubble localThoughtBubble;
 
-        // CoreSystems' ChatBubble/ThoughtBubble default height offset, tuned for a character at
-        // avatarScale == 1 (~1.75 units tall). Remote players' bubbles scale automatically because
-        // WorldPresence parents them under a GameObject whose localScale IS avatarScale; the local
-        // player's bubbles live on this (unscaled) root instead, so they must be scaled by hand here.
-        const float BaselineBubbleHeight = 1.6f;
+        [Tooltip("Extra world-space clearance above the avatar's measured top (its SpriteRenderer's " +
+                 "own rendered bounds, not a guessed unit height) before the bubble sits.")]
+        [SerializeField] private float bubbleHeightPadding = 0.15f;
 
         [Tooltip("Seconds between footstep SFX while the local player is moving.")]
         [SerializeField] private float footstepIntervalSeconds = 0.6f;
@@ -76,13 +74,13 @@ namespace Game.World
         public ChatBubble LocalChatBubble
         {
             get => localChatBubble;
-            set { localChatBubble = value; ApplyBubbleHeight(localChatBubble); }
+            set => localChatBubble = value;
         }
 
         public ThoughtBubble LocalThoughtBubble
         {
             get => localThoughtBubble;
-            set { localThoughtBubble = value; ApplyBubbleHeight(localThoughtBubble); }
+            set => localThoughtBubble = value;
         }
 
         // Fired when this game object sends an emote -- the server broadcasts emotes to everyone
@@ -103,19 +101,39 @@ namespace Game.World
             // NOTE: localFallbackCharacterName is set in Start(), AFTER charactersBaseUrl is resolved --
             // setting it here would let WorldPresence.Update() eager-spawn the fallback avatar before
             // the sprite host is known, leaving it stuck as a white quad.
-
-            // Match the local avatar's own scale-up (see the avatarScale tooltip above) -- without
-            // this the bubbles sit at the fixed CoreSystems baseline height and land partway up the
-            // (now much taller) character instead of above its head.
-            ApplyBubbleHeight(localChatBubble);
-            ApplyBubbleHeight(localThoughtBubble);
         }
 
-        // Scales CoreSystems' default bubble height by avatarScale (see the field's tooltip). Called
-        // from Awake() for scene-wired bubbles, and again whenever LocalChatBubble/LocalThoughtBubble
-        // is assigned later (e.g. in tests, or a game that spawns/finds its local bubbles at runtime).
-        void ApplyBubbleHeight(ChatBubble bubble) => bubble?.SetHeightOffset(BaselineBubbleHeight * avatarScale);
-        void ApplyBubbleHeight(ThoughtBubble bubble) => bubble?.SetHeightOffset(BaselineBubbleHeight * avatarScale);
+        Transform _measuredAvatarTransform;
+        SpriteRenderer _avatarRenderer;
+
+        // Pins the local chat/thought bubbles just above the avatar's ACTUAL rendered top edge,
+        // measured from its SpriteRenderer's own world-space bounds -- not a guessed "characters are
+        // N units tall" constant times avatarScale. That guessed-constant approach was tried first and
+        // landed the bubble either at the character's thighs (guessed too low) or far above its head
+        // (guessed too high, ~3x avatarScale=5 units), because CoreSystems' ChatBubble/ThoughtBubble
+        // default height assumes a baseline sprite scale this scene doesn't reliably match. Measuring
+        // the real bounds is correct regardless of avatarScale, character, or sprite import settings.
+        //
+        // Both bubbles live directly on this (unscaled) root GameObject rather than on the local
+        // avatar child WorldPresence spawns (LocalAvatarTransform), so they can't just inherit its
+        // scale the way a remote player's bubble inherits WorldPresence.SpawnRemotePlayer's scale --
+        // this has to actively track the avatar's measured size every frame instead.
+        void UpdateBubbleHeights()
+        {
+            var avatarTransform = Presence.LocalAvatarTransform;
+            if (avatarTransform == null) return;
+
+            if (avatarTransform != _measuredAvatarTransform)
+            {
+                _measuredAvatarTransform = avatarTransform;
+                _avatarRenderer = avatarTransform.GetComponent<SpriteRenderer>();
+            }
+            if (_avatarRenderer == null || _avatarRenderer.sprite == null) return;
+
+            var offset = (_avatarRenderer.bounds.max.y - transform.position.y) + bubbleHeightPadding;
+            localChatBubble?.SetHeightOffset(offset);
+            localThoughtBubble?.SetHeightOffset(offset);
+        }
 
         private void OnEnable()
         {
@@ -160,6 +178,7 @@ namespace Game.World
         {
             Presence.UpdateLocalTransform(transform.position, transform.eulerAngles.y);
             UpdateFootstepAudio();
+            UpdateBubbleHeights();
         }
 
         // Plays a footstep SFX at a fixed cadence while the local player is actually moving --
