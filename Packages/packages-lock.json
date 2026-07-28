@@ -27,7 +27,7 @@
       "dependencies": {
         "com.unity.inputsystem": "1.11.2"
       },
-      "hash": "4de504970f204882f23d2776dac411ea5721149e"
+      "hash": "823e41d96cdb2f3704c19859435a7e0d77a5a932"
     },
     "com.unity.2d.sprite": {
       "version": "1.0.0",

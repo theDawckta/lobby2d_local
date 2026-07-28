@@ -43,5 +43,15 @@ namespace Game.Player
             if (moveInput.sqrMagnitude < 0.0001f) return currentYaw;
             return Mathf.Atan2(moveInput.x, moveInput.y) * Mathf.Rad2Deg;
         }
+
+        // Frame-rate-independent turn-rate step toward targetYaw, taking the shortest path across
+        // the 0/360 wraparound and never overshooting. The transform this drives is what a 3D avatar
+        // (e.g. GlbCharacterAnimator) would inherit rotation from -- the 2D billboard sprite doesn't
+        // care (BillboardSprite re-faces the camera every frame and picks its sprite direction from
+        // velocity, not this transform's rotation), so this only matters once a 3D avatar exists.
+        public static float ComputeSmoothedYaw(float currentYaw, float targetYaw, float turnSpeedDegrees, float deltaTime)
+        {
+            return Mathf.MoveTowardsAngle(currentYaw, targetYaw, turnSpeedDegrees * deltaTime);
+        }
     }
 }

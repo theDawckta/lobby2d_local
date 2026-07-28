@@ -109,4 +109,26 @@ public class LocalPlayerMovementTests
         var yaw = LocalPlayerMovement.ComputeYaw(new Vector2(0f, -1f), 0f);
         Assert.AreEqual(180f, Mathf.Abs(yaw), 0.01f);
     }
+
+    [Test]
+    public void ComputeSmoothedYaw_StepsPartway_WhenTurnBudgetIsLessThanFullTurn()
+    {
+        var result = LocalPlayerMovement.ComputeSmoothedYaw(0f, 90f, 180f, 0.1f);
+        Assert.AreEqual(18f, result, 0.01f);
+        Assert.Less(result, 90f);
+    }
+
+    [Test]
+    public void ComputeSmoothedYaw_ReachesTarget_WithoutOvershoot_WhenBudgetExceedsGap()
+    {
+        var result = LocalPlayerMovement.ComputeSmoothedYaw(0f, 10f, 180f, 1f);
+        Assert.AreEqual(10f, result, 0.01f);
+    }
+
+    [Test]
+    public void ComputeSmoothedYaw_TakesShortestPath_AcrossThe0_360Wraparound()
+    {
+        var result = LocalPlayerMovement.ComputeSmoothedYaw(350f, 10f, 360f, 1f);
+        Assert.AreEqual(10f, result, 0.01f);
+    }
 }

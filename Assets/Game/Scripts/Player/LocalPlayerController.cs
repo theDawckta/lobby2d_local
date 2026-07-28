@@ -18,6 +18,13 @@ namespace Game.Player
     {
         [SerializeField] private float moveSpeed = 4f;
 
+        [Tooltip("Degrees/sec this transform turns toward the input-facing direction. The 2D billboard " +
+                 "sprite ignores this (it always re-faces the camera and picks its sprite frame from " +
+                 "movement velocity, not this transform's rotation) -- it only matters for a 3D avatar " +
+                 "(e.g. GlbCharacterAnimator) parented under this transform, which would otherwise " +
+                 "inherit an instant snap-to-facing every time input direction changes.")]
+        [SerializeField] private float turnSpeedDegrees = 540f;
+
         [Tooltip("Resolved automatically from the scene if left unassigned.")]
         [SerializeField] private VirtualAnalogStick touchStick;
 
@@ -28,6 +35,12 @@ namespace Game.Player
         {
             get => moveSpeed;
             set => moveSpeed = value;
+        }
+
+        public float TurnSpeedDegrees
+        {
+            get => turnSpeedDegrees;
+            set => turnSpeedDegrees = value;
         }
 
         public VirtualAnalogStick TouchStick
@@ -91,10 +104,17 @@ namespace Game.Player
             Velocity = LocalPlayerMovement.ComputeVelocity(moveInput, moveSpeed);
             transform.position = LocalPlayerMovement.ComputeNextPosition(transform.position, Velocity, deltaTime);
 
-            var yaw = LocalPlayerMovement.ComputeYaw(moveInput, transform.eulerAngles.y);
-            transform.rotation = Quaternion.Euler(0f, yaw, 0f);
+            // The exact instantaneous target yaw -- sent to the network unchanged from before, so
+            // remote-view responsiveness/position-sync timing isn't affected by the visual smoothing
+            // below.
+            var targetYaw = LocalPlayerMovement.ComputeYaw(moveInput, transform.eulerAngles.y);
+            if (worldPresence != null) worldPresence.UpdateLocalTransform(transform.position, targetYaw);
 
-            if (worldPresence != null) worldPresence.UpdateLocalTransform(transform.position, yaw);
+            // This transform's own rotation turns toward targetYaw at a finite rate instead of
+            // snapping to it every frame. See turnSpeedDegrees' tooltip for why this only matters
+            // once a 3D (non-billboard) avatar exists.
+            var smoothedYaw = LocalPlayerMovement.ComputeSmoothedYaw(transform.eulerAngles.y, targetYaw, turnSpeedDegrees, deltaTime);
+            transform.rotation = Quaternion.Euler(0f, smoothedYaw, 0f);
         }
     }
 }

@@ -55,25 +55,41 @@ public class LocalPlayerControllerPlayTests
     }
 
     [UnityTest]
-    public IEnumerator Move_UpdatesYaw_ToFaceMovementDirection()
+    public IEnumerator Move_TurnsPartwayTowardMovementDirection_WithinOneFrame()
     {
+        // Turning is rate-limited (turnSpeedDegrees), not instant -- a 3D avatar parented under this
+        // transform must not snap to face a new direction the moment input changes. Default 540
+        // deg/sec * 0.1s = 54-degree budget, short of the 90-degree target.
         var go = Spawn("LocalPlayer");
         var controller = go.AddComponent<LocalPlayerController>();
         yield return null;
 
         controller.Move(new Vector2(1f, 0f), 0.1f);
+
+        Assert.AreEqual(54f, go.transform.eulerAngles.y, 0.01f);
+        Assert.Less(go.transform.eulerAngles.y, 90f);
+    }
+
+    [UnityTest]
+    public IEnumerator Move_ReachesMovementDirection_AfterEnoughTime()
+    {
+        var go = Spawn("LocalPlayer");
+        var controller = go.AddComponent<LocalPlayerController>();
+        yield return null;
+
+        for (var i = 0; i < 5; i++) controller.Move(new Vector2(1f, 0f), 0.1f);
 
         Assert.AreEqual(90f, go.transform.eulerAngles.y, 0.01f);
     }
 
     [UnityTest]
-    public IEnumerator Move_NoInput_HoldsPreviousYaw()
+    public IEnumerator Move_NoInput_HoldsCurrentYaw_OnceConverged()
     {
         var go = Spawn("LocalPlayer");
         var controller = go.AddComponent<LocalPlayerController>();
         yield return null;
 
-        controller.Move(new Vector2(1f, 0f), 0.1f);
+        for (var i = 0; i < 5; i++) controller.Move(new Vector2(1f, 0f), 0.1f); // converges to 90
         controller.Move(Vector2.zero, 0.1f);
 
         Assert.AreEqual(90f, go.transform.eulerAngles.y, 0.01f);
@@ -150,6 +166,16 @@ public class LocalPlayerControllerPlayTests
         yield return null;
 
         Assert.DoesNotThrow(() => controller.ReadInput());
+    }
+
+    [UnityTest]
+    public IEnumerator DefaultTurnSpeedDegrees_IsPositive()
+    {
+        var go = Spawn("LocalPlayer");
+        var controller = go.AddComponent<LocalPlayerController>();
+        yield return null;
+
+        Assert.Greater(controller.TurnSpeedDegrees, 0f);
     }
 
     [UnityTest]
