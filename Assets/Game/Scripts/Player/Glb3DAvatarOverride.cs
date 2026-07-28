@@ -31,6 +31,15 @@ namespace Game.Player
                  "face backwards -- see GlbCharacterAnimator.modelYawOffset.")]
         [SerializeField] private float modelYawOffset = 0f;
 
+        [Tooltip("The GLB mesh's own real (bind-pose) height in its authored units -- NOT the same " +
+                 "thing as WorldPresence.avatarScale, which is calibrated for the 2D sprite pipeline " +
+                 "where a character is exactly 1 unit tall. zeke's rigged-textured.glb measures 2.0 " +
+                 "units tall bind-pose (confirmed in Blender, independent of Unity/glTFast) -- reusing " +
+                 "avatarScale unmodified as this GameObject's localScale doubled the intended size " +
+                 "(avatarScale=5 -> ~10 units tall instead of 5). The correction below rescales so the " +
+                 "GLB avatar ends up the SAME target height (avatarScale) as a 2D avatar would.")]
+        [SerializeField] private float glbNativeHeight = 2.0f;
+
         private WorldPresence _presence;
 
         private void Awake()
@@ -50,6 +59,12 @@ namespace Game.Player
             glb.MoveClip = moveClip;
             glb.ModelYawOffset = modelYawOffset;
             avatarRoot.AddComponent<GlbAvatarMotion>();
+
+            // Overwrite (not multiply) -- avatarRoot.transform.localScale was already set to
+            // Vector3.one * avatarScale by WorldPresence before this callback ran, which assumes a
+            // 1-unit-tall source (true for 2D sprites, not true for this GLB).
+            var scale = ComputeAvatarLocalScale(_presence.avatarScale, glbNativeHeight);
+            avatarRoot.transform.localScale = Vector3.one * scale;
             return true;
         }
 
@@ -65,6 +80,16 @@ namespace Game.Player
         public static string BuildGlbUrl(string charactersBaseUrl, string characterName)
         {
             return $"{charactersBaseUrl.TrimEnd('/')}/characters-static/{characterName}/model3d/{characterName}-rigged-textured.glb";
+        }
+
+        // Pure/testable: the uniform localScale that renders a GLB avatar (whose own bind-pose is
+        // glbNativeHeight units tall) at the SAME target height a 2D sprite avatar would reach at
+        // WorldPresence.avatarScale (2D sprites are exactly 1 unit tall, so avatarScale IS their
+        // target height directly).
+        public static float ComputeAvatarLocalScale(float avatarScale, float glbNativeHeight)
+        {
+            if (glbNativeHeight <= 0f) return avatarScale;
+            return avatarScale / glbNativeHeight;
         }
     }
 }
