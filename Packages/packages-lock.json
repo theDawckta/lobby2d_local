@@ -1,16 +1,5 @@
 {
   "dependencies": {
-    "com.ivanmurzak.unity.mcp": {
-      "version": "https://github.com/IvanMurzak/Unity-MCP.git?path=/Unity-MCP-Plugin/Packages/com.ivanmurzak.unity.mcp#0.84.3",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {
-        "com.unity.test-framework": "1.1.33",
-        "com.unity.modules.uielements": "1.0.0",
-        "extensions.unity.playerprefsex": "2.1.5"
-      },
-      "hash": "6e9d49e2d002b5471d7ed74cd4f1f5f175da093d"
-    },
     "com.onetimegames.coreassets": {
       "version": "https://github.com/theDawckta/ai-game-factory.git?path=/CoreAssets",
       "depth": 0,
@@ -181,13 +170,6 @@
         "com.unity.modules.physics2d": "1.0.0",
         "com.unity.modules.physics": "1.0.0"
       }
-    },
-    "extensions.unity.playerprefsex": {
-      "version": "2.1.5",
-      "depth": 1,
-      "source": "registry",
-      "dependencies": {},
-      "url": "https://package.openupm.com"
     },
     "io.colyseus.sdk": {
       "version": "https://github.com/colyseus/colyseus-unity3d.git?path=/Assets/Colyseus#0.16.5",
