@@ -52,6 +52,7 @@ MonoBehaviour:
   crossFadeSeconds: 0.2
   loadOnStart: 1
   groundSnap: 1
+  modelYawOffset: 0
   OnLoaded:
     m_PersistentCalls:
       m_Calls: []
@@ -69,9 +70,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Game::Game.Wildlife.WildlifeAgent
   wanderSpeed: 1
   fleeSpeed: 4
-  fleeDistance: 5
+  fleeDistance: 0
   arrivalDistance: 0.3
   fleeTargetDistance: 8
   wanderIntervalSeconds: 4
-  fleeSfxName: BirdChirp
   flyHeight: 3
+  turnSpeedDegreesPerSecond: 140

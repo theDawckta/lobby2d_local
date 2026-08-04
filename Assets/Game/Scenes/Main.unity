@@ -267,7 +267,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8249257069099038674, guid: 0bf372cf6c763ec4d878e6834dc1953e, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1031,7 +1031,7 @@ MonoBehaviour:
   spawnEntries:
   - prefab: {fileID: 345492621807922553, guid: 3f180d67dbe3b8f4cb08d33337e3b290, type: 3}
     count: 1
-  - prefab: {fileID: 345492621807922553, guid: 65cdafcff8b2e2b42a4c48856a66a213, type: 3}
+  - prefab: {fileID: 2928996770122044687, guid: 28449dd9fe5e782428f3a45de3afee49, type: 3}
     count: 1
   areaCenter: {x: 0, y: 0, z: 0}
   areaSize: {x: 20, y: 0, z: 20}
