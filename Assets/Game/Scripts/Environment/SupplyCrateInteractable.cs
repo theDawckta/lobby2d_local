@@ -19,11 +19,26 @@ namespace Game.Environment
     {
         [SerializeField] private string triggerTag = "Player";
 
+        [Tooltip("VfxRecipe prefab instantiated once the lid finishes opening (OnHold, not OnPlay).")]
+        [SerializeField] private GameObject coinSpillPrefab;
+
+        [Tooltip("Where the coin-spill VFX spawns. Defaults to this crate's own transform if unset.")]
+        [SerializeField] private Transform coinSpawnPoint;
+
         private NetworkedEntity _entity;
         private OneShotPropAnimator _animator;
         private bool _hasSentToggle;
+        private bool _hasSpawnedCoins;
 
         public bool IsOpen { get; private set; }
+
+        // Test-only wiring hook (mirrors ProximityOpenableController.SetPresence) so PlayMode
+        // tests can exercise the coin-spill spawn path without a prefab asset reference.
+        public void ConfigureCoinSpill(GameObject prefab, Transform spawnPoint = null)
+        {
+            coinSpillPrefab = prefab;
+            coinSpawnPoint = spawnPoint;
+        }
 
         private void Awake()
         {
@@ -34,11 +49,13 @@ namespace Game.Environment
         private void OnEnable()
         {
             _entity.ToggleChanged += HandleToggleChanged;
+            _animator.OnHold.AddListener(HandleCrateOpened);
         }
 
         private void OnDisable()
         {
             _entity.ToggleChanged -= HandleToggleChanged;
+            _animator.OnHold.RemoveListener(HandleCrateOpened);
         }
 
         private void OnTriggerEnter(Collider other)
@@ -60,6 +77,27 @@ namespace Game.Environment
             if (!on || IsOpen) return;
             IsOpen = true;
             _animator.Play();
+        }
+
+        // OneShotPropAnimator.OnHold fires once the lid animation actually reaches its held-open
+        // pose, not when it starts swinging -- so coins spill out of a visibly-open crate. Every
+        // connected client calls Play() at most once (guarded above), so this fires at most once
+        // per client too; _hasSpawnedCoins is a defensive second guard so a redundant OnHold call
+        // (e.g. multiple players triggering the crate at once) never spawns the effect twice.
+        public void HandleCrateOpened()
+        {
+            if (_hasSpawnedCoins) return;
+            _hasSpawnedCoins = true;
+            SpawnCoinSpill();
+        }
+
+        private void SpawnCoinSpill()
+        {
+            if (coinSpillPrefab == null) return;
+            var spawnPoint = coinSpawnPoint != null ? coinSpawnPoint : transform;
+            var instance = Instantiate(coinSpillPrefab, spawnPoint.position, spawnPoint.rotation);
+            var recipe = instance.GetComponent<VfxRecipe>();
+            if (recipe != null) recipe.Play();
         }
     }
 }
